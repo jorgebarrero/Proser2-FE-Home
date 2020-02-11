@@ -1,0 +1,41 @@
+<app-header></app-header>
+
+<ng-container > 
+
+  <!-- Title -->
+  <h1 class="form-title text-center">
+    Login
+  </h1>
+  <section class="container card">
+    <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+    <!-- HIDDEN ID -->
+    <input type="hidden" name="id" #userId="ngModel"
+           [(ngModel)]="serviceData.id" id="">
+
+    <!-- USERNAME -->
+    <div class="form-group">
+      <label>Usuario</label>
+      <input name="username" #userFullName="ngModel" 
+             [(ngModel)]="serviceData.username"
+             class="form-control" required>
+      <div class="validation-error"
+           *ngIf="serviceData.username.invalid && serviceData.username.touched">
+        {{'El dato es obligatorio'}}
+      </div>
+    </div>
+
+    <!-- PASSWORD -->
+    <div class="form-group ">
+      <label>Password</label>
+      <input name="password" #password="ngModel" type="password"
+             [(ngModel)]="serviceData.password"
+             class="form-control">
+    </div>
+          <!-- BUTTONS -->
+          <div class="form-group">
+            <button type="submit" [disabled]="form.invalid || form.pristine"
+                    class="btn btn-md mt-1 ">{{'Ok'}}</button>
+          </div>
+  </form>
+</section>
+</ng-container>

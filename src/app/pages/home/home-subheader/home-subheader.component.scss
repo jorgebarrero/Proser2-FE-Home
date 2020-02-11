@@ -1,0 +1,111 @@
+@import 'bootstrap';
+
+
+@include media-breakpoint-up(xs) {
+  .display-1 {
+    font-size: 1rem;
+  }
+  .display-2 {
+    font-size: 1rem;
+  }
+  .display-3 {
+    font-size: 1rem;
+  }
+
+  .align-logo {
+    display: none;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  .display-1 {
+    font-size: 2rem;
+  }
+  .display-2 {
+    font-size: 1.5rem;
+  }
+  .display-3 {
+    font-size: 1rem;
+  }
+
+  .align-logo {
+    display: none;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .display-1  {
+    font-size: 3rem;
+  }
+  .display-2 {
+    font-size: 2rem;
+  }
+  .display-3 {
+    font-size: 1rem;
+  }
+
+  .align-logo {
+    display: block;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+}
+
+@include media-breakpoint-up(lg) {
+  .display-1  {
+    font-size: 4rem;
+  }
+  .display-2  {
+    font-size: 2.5rem;
+  }
+  .display-3  {
+    font-size: 1.5rem;
+  }
+
+
+.align-logo {
+  display: block;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+}
+
+@include media-breakpoint-up(xl) {
+  .display-1  {
+    font-size: 5rem;
+  }
+  .display-2 {
+    font-size: 3rem;
+  }
+  .display-3 {
+    font-size: 2rem;
+  }
+
+.align-logo {
+  display: block;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+}

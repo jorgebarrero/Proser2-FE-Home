@@ -1,0 +1,47 @@
+form {
+  padding: 5px;
+  background-color: lightblue;
+}
+
+.form-title{
+  font-size: 24px;
+}
+
+.form-group label {
+  margin-top: 0;
+  font-size: 0.9rem;
+  color: darkblue;
+}
+
+.form-group input {
+  font-weight: bolder;
+  margin-top: 0;
+  color: red;
+}
+
+
+button[type="submit"] {
+  background-color: #77bb29;
+  color: #fff;
+}
+
+button[disabled] {
+  background-color:  rgb(199, 193, 193);
+  color: rgb(131, 126, 126);
+}
+
+
+input.ng-touched.ng-invalid {
+  background-color: lightpink;
+  border-color: #dc6545;
+}
+
+input.ng-touched {
+  background-color: lightpink;
+}
+
+div.validation-error {
+  color: #dc6545;
+  width: 100%;
+  font-size: 80%;
+}

@@ -1,0 +1,16 @@
+
+  <article class="row">
+
+  <div class="col-xs-11 col-sm-10 col-md-9 col-lg-9 col-xl-9">
+    <h3 class="display-1 mb-0">{{ title }}</h3>
+    <h2 class="display-2 mt-0">{{ env.callcenterSlogan }}</h2>
+    <p class="display-3">{{ env.callcenterName }} - {{ env.version }} -
+      {{version}}</p>
+  </div>  
+  
+  <div class="col-xs-1 col-sm-2  col-md-3 col-lg-3 col-xl-3">
+    <div class="align-logo">
+    <app-home-client-logo [clientLogo]="clientLogo" [env]="env"></app-home-client-logo>
+  </div>
+</div>
+</article>

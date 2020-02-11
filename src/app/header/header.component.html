@@ -1,0 +1,54 @@
+<ng-container >
+  <nav class="navbar navbar-expand-md ">
+    <!-- <a class="navbar-brand" href="#">Expand at md</a> -->
+    <app-header-brand></app-header-brand>
+    <app-header-section-name [title]="'Inicio'" ></app-header-section-name>
+
+    <!-- Step 3: Toggle the value of the property when the toggler button is clicked. -->
+    <button class="navbar-toggler text-white" type="button"
+            (click)="isMenuCollapsed = !isMenuCollapsed">
+      &#9776;
+    </button>
+
+
+    <div [ngbCollapse]="isMenuCollapsed" class="nav-item collapse navbar-collapse">
+      <ul class="navbar-nav">
+        <li [ngbCollapse]="isMenuCollapsed" class="nav-item collapse navbar-collapse">
+          <app-header-section-name>
+          </app-header-section-name> 
+        </li>
+
+        <li [ngbCollapse]="isMenuCollapsed" class="nav-item collapse navbar-collapse">
+           <app-header-menu-login>
+          </app-header-menu-login>
+        </li>
+
+        <li [ngbCollapse]="isMenuCollapsed" class="nav-item collapse navbar-collapse">
+          <app-header-menu-sections>
+         </app-header-menu-sections>
+       </li>
+      </ul>
+    </div>
+
+    <div>
+      <ul class="navbar-nav mr-2">
+        
+        <li [ngbCollapse]="!isMenuCollapsed" class="nav-item collapse navbar-collapse">
+          <app-header-time>
+          </app-header-time>
+        </li>
+
+        <li [ngbCollapse]="isMenuCollapsed" class="nav-item collapse navbar-collapse">
+          <app-header-user>
+          </app-header-user>
+        </li>
+
+        <li [ngbCollapse]="!isMenuCollapsed" class="nav-item collapse navbar-collapse">
+          <app-header-connection >
+          </app-header-connection>
+       </li>
+      </ul>
+    </div>
+
+  </nav>
+</ng-container>

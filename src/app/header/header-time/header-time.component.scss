@@ -1,0 +1,35 @@
+@import 'bootstrap';
+
+
+@include media-breakpoint-up(xs) {
+  .text-time{
+    font-size: 1.3rem;
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  .text-time{
+    font-size: 1.5rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .text-time{
+    font-size: 1.7rem;
+  }
+
+}
+
+@include media-breakpoint-up(lg) {
+  .text-time{
+    font-size: 1.8rem;
+  }
+
+}
+
+@include media-breakpoint-up(xl) {
+  .text-time{
+    font-size: 2rem;
+  }
+
+}

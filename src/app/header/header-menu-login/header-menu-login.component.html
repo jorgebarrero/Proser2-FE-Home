@@ -1,0 +1,10 @@
+<div ngbDropdown class="d-inline-block">
+  <a class="btn text-white" id="headerLogin"
+          ngbDropdownToggle>Login</a>
+  <div ngbDropdownMenu aria-labelledby="headerMenuMain">
+    <a ngbDropdownItem id="headerMenuMain" [routerLink]="'/layout/user/login'">Login</a>
+    <a ngbDropdownItem id="headerMenuMain" [routerLink]="'/layout/user/register'">Register</a>
+    <a ngbDropdownItem id="headerMenuMain" [routerLink]="'/layout/user/profile'">Profile</a>
+    <a ngbDropdownItem id="headerMenuMain" [routerLink]="'/layout/user/logout'">Logout</a>
+  </div>
+</div>
