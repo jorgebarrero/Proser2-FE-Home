@@ -6,9 +6,12 @@ import { FormsModule } from "@angular/forms";
 
 // Vendor
 
-// Loclas
+// Local
 import { UserRoutingModule } from './user-routing.module';
 import { HeaderModule } from 'src/app/header/header.module';
+
+// Shared
+import { AlertModule } from 'src/shared/modules';
 
 
 // Components
@@ -26,6 +29,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
   declarations: [UserComponent, UserLoginComponent, UserRegisterComponent, UserProfileComponent],
   imports: [
     CommonModule,
+    AlertModule,
     FormsModule,
     HeaderModule,
     UserRoutingModule

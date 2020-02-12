@@ -16,8 +16,8 @@ import { Router } from "@angular/router";
 import {
   RoleMappingModel,
   UserbaseModel,
+  currentUserModel
 } from "src/shared/models";
-
 
 @Injectable({
   providedIn: 'root'
@@ -53,7 +53,7 @@ export class UserService {
   loginUser(user) {
     const url_api = `${this.env.loopbackApiUrl}/api/Userbases/login?include=user`;
     return this.http
-      .post<UserbaseModel>(
+      .post<currentUserModel>(
         url_api,
         user,
         { headers: this.headers }
@@ -65,7 +65,6 @@ export class UserService {
   logoutUser() {
     const accessToken = localStorage.getItem("accessToken");
     const url_api = `${this.env.loopbackApiUrl}/api/userbases/logout?access_token=${accessToken}`;
-    this.router.navigate(["/bye"]);
     localStorage.clear();
     console.clear();
     return this.http.post<UserbaseModel>(url_api, { headers: this.headers });
@@ -127,9 +126,9 @@ export class UserService {
   /* SETTERS ****************** */
 
   // Record user in local store
-  setUser(user: UserbaseModel) {
+  setUser(user: currentUserModel) {
     const userString = JSON.stringify(user);
-    localStorage.setItem("currentUser", userString);
+    localStorage.setItem("currentUserName", userString);
   }
 
   // Record token in local store
@@ -146,20 +145,22 @@ export class UserService {
   }
 
   // Read user from local_store
-  getCurrentUser(): UserbaseModel {
-    const userString = localStorage.getItem("currentUser");
+  getcurrentUserName(): currentUserModel {
+    let currentUserName = new currentUserModel();
+    currentUserName.user.username = 'Invitado'
+    const userString = localStorage.getItem("currentUserName");
     if (!isNullOrUndefined(userString)) {
-      const user: UserbaseModel = JSON.parse(userString);
+      const user: currentUserModel = JSON.parse(userString);
       return user;
     } else {
-      return null;
+      return currentUserName;
     }
   }
 
   // Read user value from local_store
-  getCurrentUserValue() {
+  getcurrentUserNameValue() {
     let result = 0;
-    const userString = localStorage.getItem("currentUser");
+    const userString = localStorage.getItem("currentUserName");
     if (!isNullOrUndefined(userString)) {
       const user: UserbaseModel = JSON.parse(userString);
       user.profile === "develop" ? (result = 20) : "";

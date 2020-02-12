@@ -1,5 +1,9 @@
+
 // Angular
 import { Component, OnInit, Input } from "@angular/core";
+import { Router } from '@angular/router';
+
+
 
 // Vendor
 import {
@@ -11,7 +15,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 // Services
-import { EnvService } from "src/shared/services";
+import { EnvService, UserService } from "src/shared/services";
 
 @Component({
   selector: 'app-header-menu-login',
@@ -20,7 +24,7 @@ import { EnvService } from "src/shared/services";
 })
 export class HeaderMenuLoginComponent implements OnInit {
   @Input() showInMenu;
-  @Input() currentUser;
+  @Input() currentUserName;
 
   faCoffee = faCoffee;
   faChartArea = faChartArea;
@@ -29,9 +33,18 @@ export class HeaderMenuLoginComponent implements OnInit {
   faUser = faUser;
 
   env;
-  constructor(private envService: EnvService) {
+  constructor(
+    private userService:UserService,
+    private router:Router,
+    private envService: EnvService) {
     this.env = this.envService;
   }
 
   ngOnInit() { }
+
+  onLogout() {
+    this.userService.logoutUser().subscribe(res => {
+      this.router.navigate(["/layout/user/login"]);
+    });
+  }
 }

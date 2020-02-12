@@ -1,15 +1,17 @@
 
+import { catchError } from 'rxjs/operators';
+
 
 // Angular
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 // Services
 import { ToastrService } from 'ngx-toastr';
 
-import { UserbaseModel } from 'src/shared/models';
+import { UserbaseModel, AlertModel, currentUserModel } from 'src/shared/models';
 import { UserService } from 'src/shared/services';
-
 
 @Component({
   selector: 'app-user-login',
@@ -19,18 +21,26 @@ import { UserService } from 'src/shared/services';
 export class UserLoginComponent implements OnInit {
 
   model: UserbaseModel;
-  message:UserbaseModel;
+
+  alertMessage: AlertModel; 
 
   serviceData: UserbaseModel = new UserbaseModel();
   serviceList: UserbaseModel[];
   // serviceFullList: UserbaseModel= [new UserbaseModel()];
 
+  currentUserRecord: currentUserModel;
+  currentUserName: string;
+
   constructor(
     private userService: UserService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) { 
 
     this.model = new UserbaseModel();
+    this.alertMessage = new AlertModel();
+    this.currentUserRecord = new currentUserModel();
+    this.currentUserName = this.currentUserRecord.user.username;
   }
 
   ngOnInit() {
@@ -39,10 +49,39 @@ export class UserLoginComponent implements OnInit {
   }
 
 
+  getRecord(form: NgForm) {
+    this.userService.loginUser(form).subscribe( res  => {
+      let result = res
+      console.log('type', res.user.username);
+      this.currentUserName = res.user.username;
+      this.userService.setUser(res);
+      this.userService.setToken(res.id);
+      this.router.navigate(["/"]);
+      this.toastr.success('Bienvenido', this.currentUserName)
+      this.resetForm();
+    }, error => {
+      console.log('ERROR in LIST');
+      this.alertMessage.alertShow = true;
+      this.alertMessage.alertTitle = 'Error del servidor'
+      this.alertMessage.alertText = 'No se consigue este usuario'
+      this.alertMessage.alertType = 'danger'
+      console.log('this.alertMessage', this.alertMessage);
+
+    });
+  }
+
   showSuccess() {
     //  this.toastr.success('Hello world!', 'Toastr fun!');
      this.userService.ping().subscribe( res => {
-     })
+     }, error => {
+      console.log('ERROR in LIST');
+      this.alertMessage.alertShow = true;
+      this.alertMessage.alertTitle = 'Error del servidor'
+      this.alertMessage.alertText = 'No se puede conectar al servidor'
+      this.alertMessage.alertType = 'danger'
+      console.log('this.alertMessage', this.alertMessage);
+
+    })
   }
 
   
@@ -55,7 +94,7 @@ export class UserLoginComponent implements OnInit {
       lastname: '',
       profile: '',
       realm: '',
-      username: '',
+      username: ' ',
       password: '',
       email: '',
       emailVerified: '',
@@ -73,16 +112,10 @@ export class UserLoginComponent implements OnInit {
       this.resetForm();
   }
 
-  getRecord(form: NgForm) {
-    this.userService.loginUser(form).subscribe(res => {
-      this.toastr.success('Inserted successfully', 'Employee Register')
-      let result = res
-      console.log('result', res);
-      
-      this.resetForm();
-    });
+  
+
+  onGoHome(){
+    console.log('go home');
+    this.router.navigate(["/"]);
   }
-
-
-
 }

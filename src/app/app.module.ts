@@ -39,6 +39,7 @@ import { HomeClientLogoComponent } from './pages/home/home-client-logo/home-clie
     HttpClientModule,
     ToastrModule.forRoot(),
     HeaderModule,
+
     AppRoutingModule
   ],
   providers: [],

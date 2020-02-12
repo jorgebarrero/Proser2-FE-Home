@@ -1,6 +1,11 @@
-<app-header></app-header>
+<app-header [currentUserName]="currentUserName"></app-header>
 
-<ng-container > 
+<article *ngIf="alertMessage.alertShow">
+  <app-alert-stripe [alertMessage]="alertMessage">
+  </app-alert-stripe>
+</article>
+
+<ng-container *ngIf="!alertMessage.alertShow"> 
 
   <!-- Title -->
   <h1 class="form-title text-center">
@@ -39,3 +44,11 @@
   </form>
 </section>
 </ng-container>
+
+
+<section *ngIf="alertMessage.alertShow">
+  <div class="container">
+  <button class="btn btn-primary" (click)="onGoHome()">
+    Regresar al inicio
+  </button></div>
+</section>

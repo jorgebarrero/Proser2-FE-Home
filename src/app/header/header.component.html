@@ -18,12 +18,12 @@
           </app-header-section-name> 
         </li>
 
-        <li [ngbCollapse]="isMenuCollapsed" class="nav-item collapse navbar-collapse">
+        <li [ngbCollapse]="isMenuCollapsed" class="nav-item collapse navbar-collapse" *ngIf="showMenuLogin">
            <app-header-menu-login>
           </app-header-menu-login>
         </li>
 
-        <li [ngbCollapse]="isMenuCollapsed" class="nav-item collapse navbar-collapse">
+        <li [ngbCollapse]="isMenuCollapsed" class="nav-item collapse navbar-collapse" *ngIf="showMenuSections">
           <app-header-menu-sections>
          </app-header-menu-sections>
        </li>
@@ -39,7 +39,7 @@
         </li>
 
         <li [ngbCollapse]="isMenuCollapsed" class="nav-item collapse navbar-collapse">
-          <app-header-user>
+          <app-header-user [currentUserName]="currentUserName" [showMenuLogin]="showMenuLogin">
           </app-header-user>
         </li>
 

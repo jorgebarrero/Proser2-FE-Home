@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+// Angular
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
+
+// Services
+import { UserService } from "src/shared/services";
 
 @Component({
   selector: 'app-header-user',
@@ -6,10 +11,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header-user.component.scss']
 })
 export class HeaderUserComponent implements OnInit {
+  @Input() currentUserName;
+  @Input() showMenuLogin;
 
-  constructor() { }
+  constructor(
+    private userService:UserService,     
+    private router:Router,
+    ) { }
 
   ngOnInit(): void {
+  }
+
+  onLogout() {
+    this.userService.logoutUser().subscribe(res => {
+      this.router.navigate(["/layout/user/login"]);
+    });
   }
 
 }

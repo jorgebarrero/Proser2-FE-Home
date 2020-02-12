@@ -5,6 +5,6 @@
     <a ngbDropdownItem id="headerMenuMain" [routerLink]="'/layout/user/login'">Login</a>
     <a ngbDropdownItem id="headerMenuMain" [routerLink]="'/layout/user/register'">Register</a>
     <a ngbDropdownItem id="headerMenuMain" [routerLink]="'/layout/user/profile'">Profile</a>
-    <a ngbDropdownItem id="headerMenuMain" [routerLink]="'/layout/user/logout'">Logout</a>
+    <a ngbDropdownItem id="headerMenuMain" (click)="onLogout()">Logout</a>
   </div>
 </div>

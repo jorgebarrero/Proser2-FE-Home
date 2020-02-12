@@ -1,10 +1,16 @@
+// Angular
 import { Component, OnInit, Input, ViewChild } from "@angular/core";
+import { Router } from "@angular/router";
+import { Title } from "@angular/platform-browser";
+
+// Vendor
 import { NgbCarousel, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
 
-import { Router } from "@angular/router";
-
-import { Title } from "@angular/platform-browser";
+//Services
 import { EnvService } from "src/shared/services";
+import { UserService } from 'src/shared/services/user.service';
+
+
 
 @Component({
   selector: 'app-home',
@@ -28,7 +34,12 @@ export class HomeComponent implements OnInit {
   img_03;
   img_04;
 
+  currentUserName
+  showMenuLogin
+  showMenuSections
+
   constructor(
+    private userService: UserService,
     private envService: EnvService,
     private router: Router
   ) {
@@ -36,7 +47,11 @@ export class HomeComponent implements OnInit {
     this.title = "Bienvenidos a ProSer"
     this.version = "1.0.0"
     this.externalAssets = this.env.externalAssets
-    this.clientLogo = `${this.externalAssets}/img/logos_client/client-logo.png`
+    this.clientLogo = `${this.externalAssets}/img/logos_client/client-logo.png`;
+    this.showMenuLogin = true;
+    this.showMenuSections = true;
+    this.currentUserName = 'New'
+    this.onGetcurrentUserName();
   }
 
   ngOnInit() {
@@ -45,6 +60,17 @@ export class HomeComponent implements OnInit {
     this.img_02 = `${this.externalAssets}/img/intro/portada-02.jpg`;
     this.img_03 = `${this.externalAssets}/img/intro/portada-03.jpg`;
     this.img_04 = `${this.externalAssets}/img/intro/portada-04.jpg`;
+
+  }
+
+  onGetcurrentUserName() {
+    this.currentUserName = this.userService.getcurrentUserName().user.username;
+    console.log('this.currentUserName', this.currentUserName);
+    if(this.currentUserName === 'Invitado'){
+      this.showMenuSections = false;
+    } else {
+      this.showMenuLogin = false;
+    }
   }
 
 }
