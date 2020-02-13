@@ -1,16 +1,13 @@
-
-import { catchError } from 'rxjs/operators';
-
-
 // Angular
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { UserbaseModel, AlertModel, currentUserModel } from 'src/shared/models';
+
+
 // Services
 import { ToastrService } from 'ngx-toastr';
-
-import { UserbaseModel, AlertModel, currentUserModel } from 'src/shared/models';
 import { UserService } from 'src/shared/services';
 
 @Component({
@@ -25,8 +22,6 @@ export class UserLoginComponent implements OnInit {
   alertMessage: AlertModel; 
 
   serviceData: UserbaseModel = new UserbaseModel();
-  serviceList: UserbaseModel[];
-  // serviceFullList: UserbaseModel= [new UserbaseModel()];
 
   currentUserRecord: currentUserModel;
   currentUserName: string;
@@ -111,8 +106,6 @@ export class UserLoginComponent implements OnInit {
       this.getRecord(form.value);
       this.resetForm();
   }
-
-  
 
   onGoHome(){
     console.log('go home');

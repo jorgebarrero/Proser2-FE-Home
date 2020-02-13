@@ -32,12 +32,7 @@
 
     <div>
       <ul class="navbar-nav mr-2">
-        
-        <li [ngbCollapse]="!isMenuCollapsed" class="nav-item collapse navbar-collapse">
-          <app-header-time>
-          </app-header-time>
-        </li>
-
+      
         <li [ngbCollapse]="isMenuCollapsed" class="nav-item collapse navbar-collapse">
           <app-header-user [currentUserName]="currentUserName" [showMenuLogin]="showMenuLogin">
           </app-header-user>
@@ -47,6 +42,12 @@
           <app-header-connection >
           </app-header-connection>
        </li>
+
+       <!-- <li [ngbCollapse]="!isMenuCollapsed" class="nav-item collapse navbar-collapse">
+        <app-header-time>
+        </app-header-time>
+      </li> -->
+
       </ul>
     </div>
 

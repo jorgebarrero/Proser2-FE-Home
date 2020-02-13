@@ -2,7 +2,7 @@
   <a class="btn text-white" id="headerMenuMain"
           ngbDropdownToggle>{{currentUserName}}</a>
   <div ngbDropdownMenu aria-labelledby="headerMenuMain" *ngIf="!showMenuLogin">
-    <a ngbDropdownItem *ngIf="!showMenuLogin" >Perfil</a>
-    <a ngbDropdownItem id="headerMenuMain" (click)="onLogout()" *ngIf="!showMenuLogin">Logout</a>
+    <a ngbDropdownItem id="headerMenuMain" [routerLink]="'/layout/user/profile'">Profile</a>
+    <a ngbDropdownItem id="headerMenuMain" (click)="onLogout()">Logout</a>
   </div>
 </div>

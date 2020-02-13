@@ -19,6 +19,7 @@ import { UserComponent } from './user.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { ProfileCardComponent } from './user-profile/profile-card/profile-card.component';
 
 // Services
 
@@ -26,7 +27,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 @NgModule({
-  declarations: [UserComponent, UserLoginComponent, UserRegisterComponent, UserProfileComponent],
+  declarations: [UserComponent, UserLoginComponent, UserRegisterComponent, UserProfileComponent, ProfileCardComponent],
   imports: [
     CommonModule,
     AlertModule,

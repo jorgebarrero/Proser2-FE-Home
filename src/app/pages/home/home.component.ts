@@ -65,7 +65,6 @@ export class HomeComponent implements OnInit {
 
   onGetcurrentUserName() {
     this.currentUserName = this.userService.getcurrentUserName().user.username;
-    console.log('this.currentUserName', this.currentUserName);
     if(this.currentUserName === 'Invitado'){
       this.showMenuSections = false;
     } else {
