@@ -1,0 +1,37 @@
+<form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+  <!-- HIDDEN ID -->
+  <input type="hidden" name="id" #userId="ngModel"
+         [(ngModel)]="componentData.id" id="">
+
+  <!-- USERNAME -->
+  <div class="form-group">
+    <label>Usuario</label>
+    <p>{{componentData.username}}</p>
+  </div>
+
+
+    <!-- FIRSTNAME -->
+    <div class="form-group">
+      <label>Nombre</label>
+      <input name="firstname" #userFullName="ngModel" 
+             [(ngModel)]="componentData.firstname"
+             class="form-control" required>
+      <div class="validation-error"
+           *ngIf="componentData.firstname.invalid && componentData.firstname.touched">
+        {{'El dato es obligatorio'}}
+      </div>
+    </div>
+
+  <!-- PASSWORD -->
+  <div class="form-group ">
+    <label>Password</label>
+    <input name="password" #password="ngModel" type="password"
+           [(ngModel)]="componentData.password"
+           class="form-control">
+  </div>
+        <!-- BUTTONS -->
+        <div class="form-group">
+          <button type="submit" [disabled]="form.invalid || form.pristine"
+                  class="btn btn-md mt-1 ">{{'Validar'}}</button>
+        </div>
+</form>

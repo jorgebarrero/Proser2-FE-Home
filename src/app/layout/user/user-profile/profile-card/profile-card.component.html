@@ -1,10 +1,46 @@
-<div class="card ">
-  <div class=" text-left bg-primary text-white pl-1">
-    <p class="card-text">{{label}}</p>
-  </div>
-  <div>
-    <a>
-      <p class="card-text pl-3">{{text}}</p>
-    </a>
-  </div>
-</div> 
+<div class="card-columns">
+  <app-profile-card-field 
+    [label]="'Nombre para loguearse'" 
+    [text]="componentData.username"> 
+  </app-profile-card-field>
+
+  <app-profile-card-field 
+  [label]="'Email'" 
+  [text]="componentData.email"> 
+</app-profile-card-field>
+
+<app-profile-card-field 
+[label]="'Nombre del usuario'" 
+[text]="componentData.firstname"> 
+</app-profile-card-field>
+
+<app-profile-card-field 
+[label]="'Apellido del usuario'" 
+[text]="componentData.lastname"> 
+</app-profile-card-field>
+
+<app-profile-card-field 
+[label]="'Identificación'" 
+[text]="componentData.user_legal_id"> 
+</app-profile-card-field>
+
+<app-profile-card-field 
+[label]="'Número interno'" 
+[text]="componentData.user_internal_id"> 
+</app-profile-card-field>
+
+<app-profile-card-field 
+[label]="'Foto'" 
+[text]="componentData.user_photo_path"> 
+</app-profile-card-field>
+
+<app-profile-card-field 
+[label]="'Perfil asociado'" 
+[text]="componentData.profile"> 
+</app-profile-card-field>
+
+<app-profile-card-field 
+[label]="'Email verificado'" 
+[text]="componentData.emailVerified"> 
+</app-profile-card-field>
+</div>

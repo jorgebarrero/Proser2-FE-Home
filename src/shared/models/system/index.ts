@@ -6,4 +6,4 @@ export * from './RoleMapping.model';
 export * from './System.model';
 export * from './User.model';
 export * from './Userbase.model';
-export * from './CurrenUser.model';
+export * from './CurrentUser.model';

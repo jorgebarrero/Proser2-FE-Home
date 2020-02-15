@@ -20,6 +20,11 @@ import { UserLoginComponent } from './user-login/user-login.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ProfileCardComponent } from './user-profile/profile-card/profile-card.component';
+import { ProfileDetailComponent } from './user-profile/profile-detail/profile-detail.component';
+import { ProfileListComponent } from './user-profile/profile-list/profile-list.component';
+import { ProfileCardFieldComponent } from './user-profile/profile-card/profile-card-field/profile-card-field.component';
+import { ProfileEditUserComponent } from './user-profile/profile-edit-user/profile-edit-user.component';
+import { ProfileEditSystemComponent } from './user-profile/profile-edit-system/profile-edit-system.component';
 
 // Services
 
@@ -27,7 +32,7 @@ import { ProfileCardComponent } from './user-profile/profile-card/profile-card.c
 
 
 @NgModule({
-  declarations: [UserComponent, UserLoginComponent, UserRegisterComponent, UserProfileComponent, ProfileCardComponent],
+  declarations: [UserComponent, UserLoginComponent, UserRegisterComponent, UserProfileComponent, ProfileCardComponent, ProfileDetailComponent, ProfileListComponent, ProfileCardFieldComponent, ProfileEditUserComponent, ProfileEditSystemComponent],
   imports: [
     CommonModule,
     AlertModule,

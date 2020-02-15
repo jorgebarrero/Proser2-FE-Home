@@ -23,6 +23,7 @@ import { HomeCardComponent } from './pages/home/home-card/home-card.component';
 import { HomeSubheaderComponent } from './pages/home/home-subheader/home-subheader.component';
 import { HomeClientLogoComponent } from './pages/home/home-client-logo/home-client-logo.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,8 @@ import { HomeClientLogoComponent } from './pages/home/home-client-logo/home-clie
     NotFoundComponent,
     HomeCardComponent,
     HomeSubheaderComponent,
-    HomeClientLogoComponent
+    HomeClientLogoComponent,
+
   ],
   imports: [
     BrowserModule,

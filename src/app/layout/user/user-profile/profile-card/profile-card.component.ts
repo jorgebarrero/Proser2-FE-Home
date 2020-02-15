@@ -7,8 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ProfileCardComponent implements OnInit {
 
-  @Input() label;
-  @Input() text;
+  @Input() componentData;
 
   constructor() { }
 

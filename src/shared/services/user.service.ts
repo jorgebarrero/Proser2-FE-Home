@@ -16,7 +16,7 @@ import { Router } from "@angular/router";
 import {
   RoleMappingModel,
   UserbaseModel,
-  currentUserModel
+  CurrentUserModel
 } from "src/shared/models";
 
 @Injectable({
@@ -24,6 +24,8 @@ import {
 })
 export class UserService {
 
+
+  serviceData: UserbaseModel = new UserbaseModel();
   
   constructor(
     private http: HttpClient,
@@ -53,7 +55,7 @@ export class UserService {
   loginUser(user) {
     const url_api = `${this.env.loopbackApiUrl}/api/Userbases/login?include=user`;
     return this.http
-      .post<currentUserModel>(
+      .post<CurrentUserModel>(
         url_api,
         user,
         { headers: this.headers }
@@ -69,6 +71,9 @@ export class UserService {
     console.clear();
     return this.http.post<UserbaseModel>(url_api, { headers: this.headers });
   }
+
+
+
 
   // Register User in Database
   registerUser(user) {
@@ -101,6 +106,15 @@ export class UserService {
       .pipe(map(data => data));
   }
 
+    // List all users
+    getSingleUser(id) {
+      const accessToken = localStorage.getItem("accessToken");
+      const url_api = `${this.env.loopbackApiUrl}/api/userbases/${id}?access_token=${accessToken}`;
+      return this.http
+        .get<UserbaseModel>(url_api, { headers: this.headers })
+        .pipe(map(data => data));
+    }
+
   // Check in database if user exists
   checkIfExists(user) {
     const accessToken = localStorage.getItem("accessToken");
@@ -126,7 +140,7 @@ export class UserService {
   /* SETTERS ****************** */
 
   // Record user in local store
-  setUser(user: currentUserModel) {
+  setUser(user: CurrentUserModel) {
     const userString = JSON.stringify(user);
     localStorage.setItem("currentUserName", userString);
   }
@@ -144,13 +158,23 @@ export class UserService {
     return localStorage.getItem("accessToken");
   }
 
+    // Read user from local_store
+    getStoredUser(): CurrentUserModel {
+      let currentUser = new CurrentUserModel();
+      const storedUser = localStorage.getItem("currentUserName");
+      if (!isNullOrUndefined(storedUser)) {
+        currentUser = JSON.parse(storedUser);
+      } 
+      return currentUser
+    }
+
   // Read user from local_store
-  getcurrentUserName(): currentUserModel {
-    let currentUserName = new currentUserModel();
+  getcurrentUserName(): CurrentUserModel {
+    let currentUserName = new CurrentUserModel();
     currentUserName.user.username = 'Invitado'
     const userString = localStorage.getItem("currentUserName");
     if (!isNullOrUndefined(userString)) {
-      const user: currentUserModel = JSON.parse(userString);
+      const user: CurrentUserModel = JSON.parse(userString);
       return user;
     } else {
       return currentUserName;

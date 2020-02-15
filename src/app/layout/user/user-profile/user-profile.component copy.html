@@ -1,0 +1,76 @@
+<app-header [currentUserName]="currentUserName" [showMenuLogin]="showMenuLogin" [showMenuSections]="showMenuSections"></app-header>
+
+<article *ngIf="alertMessage.alertShow">
+  <app-alert-stripe [alertMessage]="alertMessage">
+  </app-alert-stripe>
+</article>
+
+
+<section class="container" *ngIf="!alertMessage.alertShow"> 
+
+
+<h1 class="form-title text-left">
+  Perfil del usuario
+</h1>
+
+
+<div class="row">
+  <div class="col-lg-4 col-md-12">
+
+    <section class="card">
+      <app-profile-detail [serviceData]="serviceData"></app-profile-detail>
+  </section>
+
+  </div>
+  <div class="container-fluid col-lg-8 col-md-12 ">
+
+    <div class="card-columns">
+  <app-profile-card 
+    [label]="'Nombre para loguearse'" 
+    [text]="currentUser.username"> 
+  </app-profile-card>
+
+  <app-profile-card 
+  [label]="'Email'" 
+  [text]="currentUser.email"> 
+</app-profile-card>
+
+<app-profile-card 
+[label]="'Nombre del usuario'" 
+[text]="currentUser.firstname"> 
+</app-profile-card>
+
+<app-profile-card 
+[label]="'Apellido del usuario'" 
+[text]="currentUser.lastname"> 
+</app-profile-card>
+
+<app-profile-card 
+[label]="'Identificación'" 
+[text]="currentUser.user_legal_id"> 
+</app-profile-card>
+
+<app-profile-card 
+[label]="'Número interno'" 
+[text]="currentUser.user_internal_id"> 
+</app-profile-card>
+
+<app-profile-card 
+[label]="'Foto'" 
+[text]="currentUser.user_photo_path"> 
+</app-profile-card>
+
+<app-profile-card 
+[label]="'Perfil asociado'" 
+[text]="currentUser.profile"> 
+</app-profile-card>
+
+<app-profile-card 
+[label]="'Email verificado'" 
+[text]="currentUser.emailVerified"> 
+</app-profile-card>
+</div>
+  </div>
+</div>
+
+</section>

@@ -1,4 +1,4 @@
- export class currentUserModel {
+ export class CurrentUserModel {
   id: string;
   ttl: number;
   created: string;
