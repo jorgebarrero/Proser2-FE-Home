@@ -1,1 +1,142 @@
-<p>profile-list works!</p>
+<ng-container>
+  <section class="d-flex justify-content-between">
+    <div>
+      <button class="btn btn-outline-primary btn-sm mr-1"
+              (click)="onGetRecords()">
+        {{ 'Todos' }}</button>
+      <button class="btn btn-outline-primary btn-sm mr-1"
+              (click)="onExportToCsv()">{{ 'Exportar' }}</button>
+      <button class="btn btn-outline-primary btn-sm mr-1"
+              (click)="unPopulateForm()">{{ 'Nuevo' }}</button>
+    </div>
+
+    <div>
+      <label>{{ 'Buscar' }}</label>
+      <input type="text" class=" agent-box submenu-field ml-1"
+             placeholder="{{ 'Busque aqui...' }}"
+             [(ngModel)]="findInList" (keyup)="onSearch(findInList)"
+             (click)="clearForm()" /></div>
+  </section>
+
+
+
+
+  <table
+         class="table table-hover table-wrapper-scroll-y table-scrollbar tableFixHead">
+
+    <thead>
+      <tr class="tableHeaderBackground">
+
+        <!-- Id -->
+        <th scope="col" class="tableHeaderBackground" width="10%">
+          {{ 'Num' }}</th>
+
+        <!-- Fullname -->
+        <th scope="col" class="tableHeaderBackground"
+            sortable="employeeFullName" (sort)="onSort($event)" width="50%">
+          {{ 'Usuario' }}</th>
+
+        <!-- Mobile -->
+        <th scope="col" class="tableHeaderBackground" sortable="employeeMobile"
+            (sort)="onSort($event)" width="20%">{{ 'Nombre' }}
+        </th>
+
+                <!-- Mobile -->
+                <th scope="col" class="tableHeaderBackground" sortable="employeeMobile"
+                (sort)="onSort($event)" width="20%">{{ 'Apellido' }}
+            </th>
+
+        <!-- Position -->
+        <th scope="col" class="tableHeaderBackground"
+            sortable="employeePosition" (sort)="onSort($event)" width="20%">
+          {{ 'Perfil' }}</th>
+
+        <!-- Delete icon -->
+        <th scope="col" class="tableHeaderBackground"
+            sortable="employeePosition" (sort)="onSort($event)" width="10%">
+          #</th>
+      </tr>
+    </thead>
+
+
+    <tr *ngFor="let user of componentList; index as i">
+
+      <!-- Index -->
+      <th scope="row">{{ i + 1 }}</th>
+
+      <!-- employeeFullName -->
+      <td (click)="populateForm(user)">
+        <ngb-highlight [result]="user.username" [term]="findInList">
+        </ngb-highlight>
+
+      </td>
+
+      <!-- employeeMobile -->
+      <td (click)="populateForm(user)">
+        <ngb-highlight [result]="user.firstname" [term]="findInList">
+        </ngb-highlight>
+      </td>
+
+            <!-- employeeMobile -->
+            <td (click)="populateForm(user)">
+              <ngb-highlight [result]="user.lastname" [term]="findInList">
+              </ngb-highlight>
+            </td>
+
+      <!-- employeePosition -->
+      <td (click)="populateForm(user)">
+        <ngb-highlight [result]="user.profile" [term]="findInList">
+        </ngb-highlight>
+      </td>
+
+      <!-- Button -->
+      <td>
+
+        <button (click)="open()"
+                (mouseenter)="populateForm(user)"
+                (mouseleave)="unPopulateForm()"
+                class=" btn btn-sm btn-outline-danger">
+          <fa-icon [icon]="faTimes"></fa-icon>
+        </button>
+      </td>
+    </tr>
+  </table>
+
+  <ng-template #deleteConfirm class="modal-full">
+
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-title">
+        {{ 'TXT-EMPLOYEES-PROFILE_DELETION' }}
+      </h4>
+      <button type="button" class="close" aria-describedby="modal-title"
+              (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p><strong>{{ 'TXT-EMPLOYEES-ARE_YOU_SURE_YOU_WANT_TO_DELETE' }}<span
+                class="text-primary">{{selectedRow.employeeFullName}}</span>
+          profile?</strong></p>
+      <p>{{ 'TXT-EMPLOYEES-ALL_INFORMATION_WILL_BE_DELETED' }}
+        <span
+              class="text-danger">{{ 'TXT-EMPLOYEES-THIS_CAN_NOT_BE_UNDONE' }}</span>
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-secondary"
+              (click)="modal.dismiss('cancel click')">{{ 'TXT-EMPLOYEES-CANCEL' }}</button>
+      <button type="button" class="btn btn-danger"
+              (click)="onDeleteRecord(selectedRow)">{{ 'TXT-EMPLOYEES-OK' }}</button>
+    </div>
+
+
+  </ng-template>
+
+</ng-container>
+
+<!-- TEXT 
+Are you sure you want to delete
+All information associated to this user profile will be permanently deleted.
+This operation can not be undone.
+
+-->

@@ -3,14 +3,45 @@
   <input type="hidden" name="id" #userId="ngModel"
          [(ngModel)]="componentData.id" id="">
 
-  <!-- USERNAME -->
-  <div class="form-group">
-    <label>Usuario</label>
-    <p>{{componentData.username}}</p>
-  </div>
+<!-- 
+firstname: "maprotel"
+lastname: "admin"
+user_legal_id: "string"
+user_internal_id: "string"
+user_photo_path: "string"
+profile: "admin"
+profile_json: null
+realm: "maprotel"
+username: "maprotel-admin"
+email: "maprotel@maprotel.com"
+emailVerified: true
+id: 1 -->
 
 
-    <!-- FIRSTNAME -->
+<!------------------------------ FIELD AREA ---------------------- -->
+
+
+    <!-- username -->
+    <div class="form-group">
+      <label>Usuario</label>
+      <input name="username" #userFullName="ngModel" 
+             [(ngModel)]="componentData.username"
+             class="form-control" required>
+      <div class="validation-error"
+           *ngIf="componentData.username.invalid && componentData.username.touched">
+        {{'El dato es obligatorio'}}
+      </div>
+    </div>
+
+      <!-- password -->
+  <div class="form-group ">
+    <label>Contraseña</label>
+    <input name="password" #password="ngModel" type="password"
+           [(ngModel)]="componentData.password"
+           class="form-control">
+
+
+    <!-- firstname -->
     <div class="form-group">
       <label>Nombre</label>
       <input name="firstname" #userFullName="ngModel" 
@@ -22,12 +53,119 @@
       </div>
     </div>
 
-  <!-- PASSWORD -->
-  <div class="form-group ">
-    <label>Password</label>
-    <input name="password" #password="ngModel" type="password"
-           [(ngModel)]="componentData.password"
-           class="form-control">
+
+  <!-- lastname -->
+  <div class="form-group">
+    <label>Apellido</label>
+    <input name="lastname" #userFullName="ngModel" 
+            [(ngModel)]="componentData.lastname"
+            class="form-control" required>
+    <div class="validation-error"
+          *ngIf="componentData.lastname.invalid && componentData.lastname.touched">
+      {{'El dato es obligatorio'}}
+    </div>
+  </div>
+
+  <!-- user_legal_id -->
+  <div class="form-group">
+    <label>Cédula</label>
+    <input name="user_legal_id" #userFullName="ngModel" 
+            [(ngModel)]="componentData.user_legal_id"
+            class="form-control" required>
+    <div class="validation-error"
+          *ngIf="componentData.user_legal_id.invalid && componentData.user_legal_id.touched">
+      {{'El dato es obligatorio'}}
+    </div>
+  </div>
+
+
+  <!-- user_internal_id -->
+  <div class="form-group">
+    <label>Número de empleado</label>
+    <input name="user_internal_id" #userFullName="ngModel" 
+            [(ngModel)]="componentData.user_internal_id"
+            class="form-control" required>
+    <div class="validation-error"
+          *ngIf="componentData.user_internal_id.invalid && componentData.user_internal_id.touched">
+      {{'El dato es obligatorio'}}
+    </div>
+  </div>
+
+                                    <!-- lastname -->
+    <div class="form-group">
+      <label>Apellido</label>
+      <input name="lastname" #userFullName="ngModel" 
+              [(ngModel)]="componentData.lastname"
+              class="form-control" required>
+      <div class="validation-error"
+            *ngIf="componentData.lastname.invalid && componentData.lastname.touched">
+        {{'El dato es obligatorio'}}
+      </div>
+    </div>
+
+                                <!-- lastname -->
+                                <div class="form-group">
+                                  <label>Apellido</label>
+                                  <input name="lastname" #userFullName="ngModel" 
+                                         [(ngModel)]="componentData.lastname"
+                                         class="form-control" required>
+                                  <div class="validation-error"
+                                       *ngIf="componentData.lastname.invalid && componentData.lastname.touched">
+                                    {{'El dato es obligatorio'}}
+                                  </div>
+                                </div>
+
+                                                <!-- lastname -->
+                <div class="form-group">
+                  <label>Apellido</label>
+                  <input name="lastname" #userFullName="ngModel" 
+                         [(ngModel)]="componentData.lastname"
+                         class="form-control" required>
+                  <div class="validation-error"
+                       *ngIf="componentData.lastname.invalid && componentData.lastname.touched">
+                    {{'El dato es obligatorio'}}
+                  </div>
+                </div>
+
+                                <!-- lastname -->
+                                <div class="form-group">
+                                  <label>Apellido</label>
+                                  <input name="lastname" #userFullName="ngModel" 
+                                         [(ngModel)]="componentData.lastname"
+                                         class="form-control" required>
+                                  <div class="validation-error"
+                                       *ngIf="componentData.lastname.invalid && componentData.lastname.touched">
+                                    {{'El dato es obligatorio'}}
+                                  </div>
+                                </div>
+
+                                                <!-- lastname -->
+                <div class="form-group">
+                  <label>Apellido</label>
+                  <input name="lastname" #userFullName="ngModel" 
+                         [(ngModel)]="componentData.lastname"
+                         class="form-control" required>
+                  <div class="validation-error"
+                       *ngIf="componentData.lastname.invalid && componentData.lastname.touched">
+                    {{'El dato es obligatorio'}}
+                  </div>
+                </div>
+
+                                <!-- lastname -->
+                                <div class="form-group">
+                                  <label>Apellido</label>
+                                  <input name="lastname" #userFullName="ngModel" 
+                                         [(ngModel)]="componentData.lastname"
+                                         class="form-control" required>
+                                  <div class="validation-error"
+                                       *ngIf="componentData.lastname.invalid && componentData.lastname.touched">
+                                    {{'El dato es obligatorio'}}
+                                  </div>
+                                </div>
+
+
+<!------------------------------ BUTTON AREA ---------------------- -->
+
   </div>
         <!-- BUTTONS -->
         <div class="form-group">

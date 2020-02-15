@@ -1,19 +1,19 @@
-<ng-container *transloco="let t; scope: 'employee';">
+<ng-container>
   <section class="d-flex justify-content-between">
     <div>
       <button class="btn btn-outline-primary btn-sm mr-1"
               (click)="onGetRecords()">
-        {{ t('TXT-EMPLOYEES-GET_ALL') }}</button>
+        {{ 'TXT-EMPLOYEES-GET_ALL' }}</button>
       <button class="btn btn-outline-primary btn-sm mr-1"
-              (click)="onExportToCsv()">{{ t('TXT-EMPLOYEES-EXPORT') }}</button>
+              (click)="onExportToCsv()">{{ 'TXT-EMPLOYEES-EXPORT' }}</button>
       <button class="btn btn-outline-primary btn-sm mr-1"
-              (click)="unPopulateForm()">{{ t('TXT-EMPLOYEES-NEW') }}</button>
+              (click)="unPopulateForm()">{{ 'TXT-EMPLOYEES-NEW' }}</button>
     </div>
 
     <div>
-      <label>{{ t('TXT-EMPLOYEES-FULL_TEXT_SEARCH') }}</label>
+      <label>{{ 'TXT-EMPLOYEES-FULL_TEXT_SEARCH' }}</label>
       <input type="text" class=" agent-box submenu-field ml-1"
-             placeholder="{{ t('TXT-EMPLOYEES-FULL_TEXT_SEARCH') }}"
+             placeholder="{{ 'TXT-EMPLOYEES-FULL_TEXT_SEARCH' }}"
              [(ngModel)]="findInList" (keyup)="onSearch(findInList)"
              (click)="clearForm()" /></div>
   </section>
@@ -27,22 +27,22 @@
 
         <!-- Id -->
         <th scope="col" class="tableHeaderBackground" width="10%">
-          {{ t('TXT-EMPLOYEES-NUM') }}</th>
+          {{ 'TXT-EMPLOYEES-NUM' }}</th>
 
         <!-- Fullname -->
         <th scope="col" class="tableHeaderBackground"
             sortable="employeeFullName" (sort)="onSort($event)" width="50%">
-          {{ t('TXT-EMPLOYEES-FULL_NAME') }}</th>
+          {{ 'TXT-EMPLOYEES-FULL_NAME' }}</th>
 
         <!-- Mobile -->
         <th scope="col" class="tableHeaderBackground" sortable="employeeMobile"
-            (sort)="onSort($event)" width="20%">{{ t('TXT-EMPLOYEES-MOBILE') }}
+            (sort)="onSort($event)" width="20%">{{ 'TXT-EMPLOYEES-MOBILE' }}
         </th>
 
         <!-- Position -->
         <th scope="col" class="tableHeaderBackground"
             sortable="employeePosition" (sort)="onSort($event)" width="20%">
-          {{ t('TXT-EMPLOYEES-POSITION') }}</th>
+          {{ 'TXT-EMPLOYEES-POSITION' }}</th>
 
         <!-- Delete icon -->
         <th scope="col" class="tableHeaderBackground"
@@ -94,7 +94,7 @@
 
     <div class="modal-header">
       <h4 class="modal-title" id="modal-title">
-        {{ t('TXT-EMPLOYEES-PROFILE_DELETION') }}
+        {{ 'TXT-EMPLOYEES-PROFILE_DELETION' }}
       </h4>
       <button type="button" class="close" aria-describedby="modal-title"
               (click)="modal.dismiss('Cross click')">
@@ -102,19 +102,19 @@
       </button>
     </div>
     <div class="modal-body">
-      <p><strong>{{ t('TXT-EMPLOYEES-ARE_YOU_SURE_YOU_WANT_TO_DELETE') }}<span
+      <p><strong>{{ 'TXT-EMPLOYEES-ARE_YOU_SURE_YOU_WANT_TO_DELETE' }}<span
                 class="text-primary">{{selectedRow.employeeFullName}}</span>
           profile?</strong></p>
-      <p>{{ t('TXT-EMPLOYEES-ALL_INFORMATION_WILL_BE_DELETED') }}
+      <p>{{ 'TXT-EMPLOYEES-ALL_INFORMATION_WILL_BE_DELETED' }}
         <span
-              class="text-danger">{{ t('TXT-EMPLOYEES-THIS_CAN_NOT_BE_UNDONE') }}</span>
+              class="text-danger">{{ 'TXT-EMPLOYEES-THIS_CAN_NOT_BE_UNDONE' }}</span>
       </p>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-secondary"
-              (click)="modal.dismiss('cancel click')">{{ t('TXT-EMPLOYEES-CANCEL') }}</button>
+              (click)="modal.dismiss('cancel click')">{{ 'TXT-EMPLOYEES-CANCEL' }}</button>
       <button type="button" class="btn btn-danger"
-              (click)="onDeleteRecord(selectedRow)">{{ t('TXT-EMPLOYEES-OK') }}</button>
+              (click)="onDeleteRecord(selectedRow)">{{ 'TXT-EMPLOYEES-OK' }}</button>
     </div>
 
 

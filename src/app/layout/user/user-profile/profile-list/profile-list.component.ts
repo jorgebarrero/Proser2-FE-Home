@@ -26,10 +26,16 @@ import { UserService } from 'src/shared/services';
 })
 export class ProfileListComponent implements OnInit {
   @Output() alertBack: EventEmitter<AlertModel> = new EventEmitter()
+  @Output() onComponentData: EventEmitter<AlertModel> = new EventEmitter()
 
   alertMessage: AlertModel;
 
   rows
+
+  componentData: UserbaseModel;
+  componentList: UserbaseModel[];
+  componentFullList: UserbaseModel[];
+
 
   page = 1;
   pageSize = 4;
@@ -83,25 +89,27 @@ export class ProfileListComponent implements OnInit {
 
   onGetRecords() {
     // this.clearForm();
-    // this.userService.getRecords().subscribe(
-    //   res => {
-    //     this.userService.list = res
-    //     this.userService.fullList = res
-    //     this.collectionSize = res.length
-    //     this.alertMessage = new AlertModel()
-    //   }, error => {
-    //     console.log('ERROR in LIST');
+    this.userService.getAllUsers().subscribe(
+      res => {
+        console.log('res', res);
+        
+        this.componentList = res
+        this.componentFullList = res
+        this.collectionSize = res.length
+        this.alertMessage = new AlertModel()
+      }, error => {
+        console.log('ERROR in LIST');
 
-    //     this.alertMessage.alertShow = true;
-    //     this.alertMessage.alertTitle = 'Error del servidor'
-    //     this.alertMessage.alertText = 'No se puede conectar al servidor'
-    //     this.alertMessage.alertType = 'danger'
-    //     this.alertBack.emit(this.alertMessage);
-    //     console.log('this.alertMessage', this.alertMessage);
+        this.alertMessage.alertShow = true;
+        this.alertMessage.alertTitle = 'Error del servidor'
+        this.alertMessage.alertText = 'No se puede conectar al servidor'
+        this.alertMessage.alertType = 'danger'
+        this.alertBack.emit(this.alertMessage);
+        console.log('this.alertMessage', this.alertMessage);
 
-    //   }
+      }
 
-    // );
+    );
   }
 
   onDeleteRecord(user: UserbaseModel) {
@@ -115,7 +123,11 @@ export class ProfileListComponent implements OnInit {
     this.modal.close()
   }
 
-  populateForm(user: UserbaseModel) {
+  populateForm(user) {
+    console.log('user', user);
+    this.componentData = user;
+    this.onComponentData.emit(user);
+    
     // this.userService.formData = Object.assign({}, user);
     // this.selectedRow = Object.assign({}, user);
   }
@@ -167,8 +179,8 @@ export class ProfileListComponent implements OnInit {
     // this.csvExporter.generateCsv(this.userService.list);
   }
 
-  open(name: string) {
-    // this.modal = this.modalService.open(name);
+  open() {
+    this.modal = this.modalService.open('deleteConfirm');
   }
 
 }

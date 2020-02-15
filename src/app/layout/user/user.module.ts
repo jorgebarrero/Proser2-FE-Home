@@ -5,6 +5,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from "@angular/forms";
 
 // Vendor
+import { ToastrModule } from 'ngx-toastr';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 // Local
 import { UserRoutingModule } from './user-routing.module';
@@ -38,6 +41,9 @@ import { ProfileEditSystemComponent } from './user-profile/profile-edit-system/p
     AlertModule,
     FormsModule,
     HeaderModule,
+    ToastrModule,
+    FontAwesomeModule,
+    NgbModule,
     UserRoutingModule
   ],
   providers: []

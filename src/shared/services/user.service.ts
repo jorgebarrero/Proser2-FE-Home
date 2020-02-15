@@ -102,7 +102,7 @@ export class UserService {
     const accessToken = localStorage.getItem("accessToken");
     const url_api = `${this.env.loopbackApiUrl}/api/userbases?access_token=${accessToken}`;
     return this.http
-      .get<UserbaseModel>(url_api, { headers: this.headers })
+      .get<UserbaseModel[]>(url_api, { headers: this.headers })
       .pipe(map(data => data));
   }
 
