@@ -1,0 +1,170 @@
+
+<form #form="ngForm" (ngSubmit)="onSubmit(form)" autocomplete="off"
+class="form">
+
+<p class="form-title">
+Editar
+</p>
+<!-- HIDDEN ID -->
+<input type="hidden" name="id" #userId="ngModel"
+   [(ngModel)]="componentData.id" id="">
+
+<!------------------------------ FIELD AREA ---------------------- -->
+
+<!-- {{form | json}} -->
+
+<section class="row">
+
+<!-- id -->
+<div class="form-group col-3">
+<label>Id</label>
+<input name="id" #id="ngModel" [(ngModel)]="componentData.id"
+       class="form-control" required>
+<div class="validation-error"
+     *ngIf="componentData.id.invalid && componentData.id.touched">
+  {{'El dato es obligatorio'}}
+</div>
+</div>
+
+<!-- email -->
+<div class="form-group col-9">
+<label>Email</label>
+<input name="email" #email="ngModel" [(ngModel)]="componentData.email"
+       class="form-control" required>
+<div class="validation-error" *ngIf="componentData.email.invalid">
+  <p>Dato obligatorio</p>
+</div>
+</div>
+
+<!-- username -->
+<div class="form-group col-6">
+<label>Usuario</label>
+<input name="username" #username="ngModel"
+       [(ngModel)]="componentData.username" class="form-control" required>
+<div class="validation-error"
+     *ngIf="componentData.username.invalid && componentData.username.touched">
+  {{'El dato es obligatorio'}}
+</div>
+</div>
+
+<!-- profile -->
+<div class="form-group col-6">
+<label>Perfil</label>
+<input name="profile" #profile="ngModel"
+       [(ngModel)]="componentData.profile" class="form-control" required>
+<div class="validation-error"
+     *ngIf="componentData.profile.invalid && componentData.profile.touched">
+  {{'El dato es obligatorio'}}
+</div>
+</div>
+
+
+
+<!-- firstname -->
+<div class="form-group col-6">
+<label>Nombre</label>
+<input name="firstname" #firstname="ngModel"
+       [(ngModel)]="componentData.firstname" class="form-control"
+       required>
+<div class="validation-error"
+     *ngIf="componentData.firstname.invalid && componentData.firstname.touched">
+  {{'El dato es obligatorio'}}
+</div>
+</div>
+
+<!-- lastname -->
+<div class="form-group col-6">
+<label>Apellido</label>
+<input name="lastname" #lastname="ngModel"
+       [(ngModel)]="componentData.lastname" class="form-control" required>
+<div class="validation-error"
+     *ngIf="componentData.lastname.invalid && componentData.lastname.touched">
+  {{'El dato es obligatorio'}}
+</div>
+</div>
+
+
+<!-- user_legal_id -->
+<div class="form-group col-6">
+<label>Cédula</label>
+<input name="user_legal_id" #user_legal_id="ngModel"
+       [(ngModel)]="componentData.user_legal_id" class="form-control"
+       required>
+<div class="validation-error"
+     *ngIf="componentData.user_legal_id.invalid && componentData.user_legal_id.touched">
+  {{'El dato es obligatorio'}}
+</div>
+</div>
+
+
+<!-- user_internal_id -->
+<div class="form-group col-6">
+<label>Número de empleado</label>
+<input name="user_internal_id" #user_legal_id="ngModel"
+       [(ngModel)]="componentData.user_internal_id" class="form-control"
+       required>
+<div class="validation-error"
+     *ngIf="componentData.user_internal_id.invalid && componentData.user_internal_id.touched">
+  {{'El dato es obligatorio'}}
+</div>
+</div>
+
+
+<!-- password -->
+<div class="form-group col-6">
+<label>Contraseña</label>
+<input name="password" #password="ngModel" type="password"
+       [(ngModel)]="componentData.password" class="form-control">
+<div class="validation-error" *ngIf="componentData.email.touched">
+  {{'El dato es obligatorio'}}
+</div>
+</div>
+
+
+<!-- emailVerified -->
+<div class="form-group col-6">
+<label>Email verification</label>
+<input name="emailVerified" #emailVerified="ngModel"
+       [(ngModel)]="componentData.emailVerified" class="form-control"
+       required>
+<div class="validation-error"
+     *ngIf="componentData.emailVerified.invalid && componentData.emailVerified.touched">
+  {{'El dato es obligatorio'}}
+</div>
+</div>
+
+
+<!-- user_photo_path -->
+<div class="form-group col-6">
+<label>Ubicación de la foto</label>
+<input name="user_photo_path" #user_photo_path="ngModel"
+       [(ngModel)]="componentData.user_photo_path" class="form-control"
+       required>
+<!-- <div class="validation-error"
+     *ngIf="componentData.user_photo_path.invalid && componentData.user_photo_path.touched">
+  {{'El dato es obligatorio'}}
+</div> -->
+</div>
+
+
+<!-- realm -->
+<div class="form-group col-6">
+<label>Realm</label>
+<input name="realm" #realm="ngModel" [(ngModel)]="componentData.realm"
+       class="form-control" required>
+<div class="validation-error"
+     *ngIf="componentData.realm.invalid && componentData.realm.touched">
+  {{'El dato es obligatorio'}}
+</div>
+</div>
+
+</section>
+
+<!------------------------------ BUTTON AREA ---------------------- -->
+
+<!-- BUTTONS -->
+<div class="form-group">
+<button type="submit" [disabled]="form.invalid || form.pristine"
+      class="btn btn-md mt-1 ">{{'Validar'}}</button>
+</div>
+</form>

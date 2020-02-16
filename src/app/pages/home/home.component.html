@@ -1,15 +1,21 @@
-<app-header [currentUserName]="currentUserName" [showMenuLogin]="showMenuLogin" [showMenuSections]="showMenuSections"></app-header>
+<app-header [currentUser]="currentUser" [showMenus]="showMenus"
+            [alertMessage]="alertMessage"></app-header>
 
 <section id="intro" class="container">
-  <app-home-subheader [env]="env" [title]="title" [version]="version" [clientLogo]="clientLogo"></app-home-subheader>
+  <app-home-subheader [env]="env" [title]="title" [clientLogo]="clientLogo">
+  </app-home-subheader>
 </section>
 
 
-<section class="container" >
+<section class="container">
   <div class="card-columns">
-  <app-home-card [title]="'Servicios Entrantes'" [image]="img_01" ></app-home-card>
-  <app-home-card [title]="'Salientes Automáticos'" [image]="img_02" ></app-home-card>
-  <app-home-card [title]="'Salientes Manuales'" [image]="img_03" ></app-home-card>
-  <app-home-card [title]="'Gestion de personal'" [image]="img_04" ></app-home-card>
-</div>
+    <app-home-card [title]="'Servicios Entrantes'" [image]="img_01">
+    </app-home-card>
+    <app-home-card [title]="'Salientes Automáticos'" [image]="img_02">
+    </app-home-card>
+    <app-home-card [title]="'Salientes Manuales'" [image]="img_03">
+    </app-home-card>
+    <app-home-card [title]="'Gestion de personal'" [image]="img_04">
+    </app-home-card>
+  </div>
 </section>

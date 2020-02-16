@@ -1,59 +1,64 @@
 // Angular
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 
-import {
-  UserbaseModel,
-  AlertModel,
-  CurrentUserModel,
-  HomeMenuModel
-} from "src/shared/models";
+import { UserbaseModel, AlertModel, CurrentUserModel } from "src/shared/models";
 
 // Services
 import { ToastrService } from "ngx-toastr";
 import { UserService } from "src/shared/services";
 
 @Component({
-  selector: "app-user-login",
-  templateUrl: "./user-login.component.html",
-  styleUrls: ["./user-login.component.scss"]
+  selector: "app-profile-edit-system",
+  templateUrl: "./profile-edit-system.component.html",
+  styleUrls: ["./profile-edit-system.component.scss"]
 })
-export class UserLoginComponent implements OnInit {
-  model: UserbaseModel;
-  componentData: UserbaseModel = new UserbaseModel();
+export class ProfileEditSystemComponent implements OnInit {
+  currentUser;
+  currentUserName: string;
+  currentUserRecord: CurrentUserModel;
 
-  currentUser: CurrentUserModel;
-  showMenus: HomeMenuModel;
+  showMenuSections;
+  showMenuLogin;
+
+  model: UserbaseModel;
   alertMessage: AlertModel;
+
+  @Input() componentData: UserbaseModel;
+
+  user: UserbaseModel;
 
   constructor(
     private userService: UserService,
     private toastr: ToastrService,
     private router: Router
   ) {
+    this.showMenuSections = true;
+    this.showMenuLogin = true;
     this.model = new UserbaseModel();
     this.alertMessage = new AlertModel();
-    this.currentUser = new CurrentUserModel();
+    this.currentUserRecord = new CurrentUserModel();
+    this.onGetcurrentUserName();
+    this.getStoredUser();
   }
 
   ngOnInit() {
     this.showSuccess();
     this.resetForm();
-    this.onShowMenus();
   }
 
-  getRecord(form: NgForm) {
-    this.userService.loginUser(form).subscribe(
+  getStoredUser() {
+    let storedUser = this.userService.getStoredUser();
+    this.getRecord(storedUser.user.id);
+  }
+
+  getRecord(id) {
+    this.userService.getSingleUser(id).subscribe(
       res => {
         let result = res;
-        console.log("type", res.user);
-        this.currentUser = res;
-        this.userService.setUser(res);
-        this.userService.setToken(res.id);
-        this.router.navigate(["/"]);
-        this.toastr.success("Bienvenido", this.currentUser.user.username);
-        this.resetForm();
+        this.userService.serviceData = res;
+        this.componentData = res;
       },
       error => {
         console.log("ERROR in LIST");
@@ -81,10 +86,6 @@ export class UserLoginComponent implements OnInit {
     );
   }
 
-  onShowMenus() {
-    this.showMenus = { sections: false, login: true };
-  }
-
   resetForm(form?: NgForm) {
     if (form != null) form.resetForm();
     this.componentData = {
@@ -103,6 +104,7 @@ export class UserLoginComponent implements OnInit {
       user_internal_id: "",
       user_photo_path: ""
     };
+    this.userService.serviceData = this.componentData;
   }
 
   onSubmit(form: NgForm) {
@@ -113,5 +115,20 @@ export class UserLoginComponent implements OnInit {
   onGoHome() {
     console.log("go home");
     this.router.navigate(["/"]);
+  }
+
+  onGetcurrentUserName() {
+    this.currentUser = this.userService.getcurrentUserName().user;
+    this.currentUserName = this.userService.getcurrentUserName().user.username;
+    if (this.currentUserName === "Invitado") {
+      this.showMenuSections = false;
+    } else {
+      this.showMenuLogin = false;
+    }
+  }
+
+  onComponentData(event) {
+    console.log(event);
+    this.componentData = event;
   }
 }

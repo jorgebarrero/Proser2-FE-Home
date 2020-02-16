@@ -1,8 +1,8 @@
-<ng-container >
+<ng-container>
   <nav class="navbar navbar-expand-md ">
     <!-- <a class="navbar-brand" href="#">Expand at md</a> -->
     <app-header-brand></app-header-brand>
-    <app-header-section-name [title]="'Inicio'" ></app-header-section-name>
+    <app-header-section-name [title]="'Inicio'"></app-header-section-name>
 
     <!-- Step 3: Toggle the value of the property when the toggler button is clicked. -->
     <button class="navbar-toggler text-white" type="button"
@@ -11,39 +11,46 @@
     </button>
 
 
-    <div [ngbCollapse]="isMenuCollapsed" class="nav-item collapse navbar-collapse">
+    <div [ngbCollapse]="isMenuCollapsed"
+         class="nav-item collapse navbar-collapse">
       <ul class="navbar-nav">
-        <li [ngbCollapse]="isMenuCollapsed" class="nav-item collapse navbar-collapse">
+        <li [ngbCollapse]="isMenuCollapsed"
+            class="nav-item collapse navbar-collapse">
           <app-header-section-name>
-          </app-header-section-name> 
+          </app-header-section-name>
         </li>
 
-        <li [ngbCollapse]="isMenuCollapsed" class="nav-item collapse navbar-collapse" *ngIf="showMenuLogin">
-           <app-header-menu-login>
+        <li [ngbCollapse]="isMenuCollapsed"
+            class="nav-item collapse navbar-collapse" *ngIf="showMenus.login">
+          <app-header-menu-login>
           </app-header-menu-login>
         </li>
 
-        <li [ngbCollapse]="isMenuCollapsed" class="nav-item collapse navbar-collapse" *ngIf="showMenuSections">
+        <li [ngbCollapse]="isMenuCollapsed"
+            class="nav-item collapse navbar-collapse"
+            *ngIf="showMenus.sections">
           <app-header-menu-sections>
-         </app-header-menu-sections>
-       </li>
+          </app-header-menu-sections>
+        </li>
       </ul>
     </div>
 
     <div>
       <ul class="navbar-nav mr-2">
-      
-        <li [ngbCollapse]="isMenuCollapsed" class="nav-item collapse navbar-collapse">
-          <app-header-user [currentUserName]="currentUserName" [showMenuLogin]="showMenuLogin">
+
+        <li [ngbCollapse]="isMenuCollapsed"
+            class="nav-item collapse navbar-collapse">
+          <app-header-user [currentUser]="currentUser" [showMenus]="showMenus">
           </app-header-user>
         </li>
 
-        <li [ngbCollapse]="!isMenuCollapsed" class="nav-item collapse navbar-collapse">
-          <app-header-connection >
+        <li [ngbCollapse]="!isMenuCollapsed"
+            class="nav-item collapse navbar-collapse">
+          <app-header-connection>
           </app-header-connection>
-       </li>
+        </li>
 
-       <!-- <li [ngbCollapse]="!isMenuCollapsed" class="nav-item collapse navbar-collapse">
+        <!-- <li [ngbCollapse]="!isMenuCollapsed" class="nav-item collapse navbar-collapse">
         <app-header-time>
         </app-header-time>
       </li> -->
@@ -52,4 +59,10 @@
     </div>
 
   </nav>
+
+  <article *ngIf="alertMessage.alertShow">
+    <app-alert-stripe [alertMessage]="alertMessage">
+    </app-alert-stripe>
+  </article>
+
 </ng-container>

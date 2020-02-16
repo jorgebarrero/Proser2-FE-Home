@@ -1,32 +1,31 @@
-<app-header [currentUserName]="currentUserName" [showMenuLogin]="showMenuLogin" [showMenuSections]="showMenuSections"></app-header>
 
-<article *ngIf="alertMessage.alertShow">
-  <app-alert-stripe [alertMessage]="alertMessage">
-  </app-alert-stripe>
-</article>
+<app-header [currentUser]="currentUser" [showMenus]="showMenus"
+[alertMessage]="alertMessage"></app-header>
 
 
-<section class="container" *ngIf="!alertMessage.alertShow"> 
+<section class="container" *ngIf="!alertMessage.alertShow">
 
 
-<h1 class="form-title text-left">
-  Perfil del usuario
-</h1>
+  <h1 class="form-title text-left">
+    Perfil del usuario
+  </h1>
 
 
-<div class="row" *ngIf="componentData">
-  <div class="col-lg-4 col-md-12">
+  <div class="row" *ngIf="componentData">
+    <div class="col-lg-4 col-md-12">
 
-    <section class="card">
-      <app-profile-detail [componentData]="componentData"></app-profile-detail>
-    </section>
+      <section class="card">
+        <app-profile-detail [componentData]="componentData">
+        </app-profile-detail>
+      </section>
 
+    </div>
+
+
+    <div class="col-lg-8 col-md-12 ">
+      <app-profile-list (onComponentData)="onComponentData($event)">
+      </app-profile-list>
+    </div>
   </div>
-
-
-  <div class="container-fluid col-lg-8 col-md-12 ">
-    <app-profile-list (onComponentData)="onComponentData($event)"></app-profile-list>
-  </div>
-</div>
 
 </section>

@@ -1,11 +1,7 @@
-<app-header [currentUserName]="currentUserName"></app-header>
+<app-header [currentUser]="currentUser" [showMenus]="showMenus"
+            [alertMessage]="alertMessage"></app-header>
 
-<article *ngIf="alertMessage.alertShow">
-  <app-alert-stripe [alertMessage]="alertMessage">
-  </app-alert-stripe>
-</article>
-
-<ng-container *ngIf="!alertMessage.alertShow"> 
+<ng-container *ngIf="!alertMessage.alertShow">
 
   <!-- Title -->
   <h1 class="form-title text-center">
@@ -13,42 +9,45 @@
   </h1>
   <section class="container card">
     <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
-    <!-- HIDDEN ID -->
-    <input type="hidden" name="id" #userId="ngModel"
-           [(ngModel)]="serviceData.id" id="">
+      <!-- HIDDEN ID -->
+      <input type="hidden" name="id" #userId="ngModel"
+             [(ngModel)]="componentData.id" id="">
 
-    <!-- USERNAME -->
-    <div class="form-group">
-      <label>Usuario</label>
-      <input name="username" #userFullName="ngModel" 
-             [(ngModel)]="serviceData.username"
-             class="form-control" required>
-      <div class="validation-error"
-           *ngIf="serviceData.username.invalid && serviceData.username.touched">
-        {{'El dato es obligatorio'}}
+      <!-- USERNAME -->
+      <div class="form-group">
+        <label>Usuario</label>
+        <input name="username" #userFullName="ngModel"
+               [(ngModel)]="componentData.username" class="form-control"
+               required>
+        <div class="validation-error"
+             *ngIf="componentData.username.invalid && componentData.username.touched">
+          {{'El dato es obligatorio'}}
+        </div>
       </div>
-    </div>
 
-    <!-- PASSWORD -->
-    <div class="form-group ">
-      <label>Password</label>
-      <input name="password" #password="ngModel" type="password"
-             [(ngModel)]="serviceData.password"
-             class="form-control">
-    </div>
-          <!-- BUTTONS -->
-          <div class="form-group">
-            <button type="submit" [disabled]="form.invalid || form.pristine"
-                    class="btn btn-md mt-1 ">{{'Ok'}}</button>
-          </div>
-  </form>
-</section>
+      <!-- PASSWORD -->
+      <div class="form-group ">
+        <label>Password</label>
+        <input name="password" #password="ngModel" type="password"
+               [(ngModel)]="componentData.password" class="form-control">
+        <div class="validation-error"
+             *ngIf="componentData.password.invalid && componentData.password.touched">
+          {{'El dato es obligatorio'}}
+        </div>
+      </div>
+      <!-- BUTTONS -->
+      <div class="form-group">
+        <button type="submit" [disabled]="form.invalid || form.pristine"
+                class="btn btn-md mt-1 ">{{'Ok'}}</button>
+      </div>
+    </form>
+  </section>
 </ng-container>
 
 
 <section *ngIf="alertMessage.alertShow">
   <div class="container">
-  <button class="btn btn-primary" (click)="onGoHome()">
-    Regresar al inicio
-  </button></div>
+    <button class="btn btn-primary" (click)="onGoHome()">
+      Regresar al inicio
+    </button></div>
 </section>

@@ -1,8 +1,10 @@
 <div ngbDropdown class="d-inline-block">
   <a class="btn text-white" id="headerMenuMain"
-          ngbDropdownToggle>{{currentUserName}}</a>
-  <div ngbDropdownMenu aria-labelledby="headerMenuMain" *ngIf="!showMenuLogin">
-    <a ngbDropdownItem id="headerMenuMain" [routerLink]="'/layout/user/profile-user'">Profile</a>
+     ngbDropdownToggle>{{currentUser.user.username}}</a>
+  <div ngbDropdownMenu aria-labelledby="headerMenuMain"
+       *ngIf="!showMenus.login">
+    <a ngbDropdownItem id="headerMenuMain"
+       [routerLink]="'/layout/user/profile-user'">Profile</a>
     <a ngbDropdownItem id="headerMenuMain" (click)="onLogout()">Logout</a>
   </div>
 </div>
