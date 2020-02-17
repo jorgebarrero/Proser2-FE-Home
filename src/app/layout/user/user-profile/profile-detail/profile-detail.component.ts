@@ -37,15 +37,21 @@ export class ProfileDetailComponent implements OnInit {
 
     this.rForm = fb.group({
       name: [null, Validators.required],
-      description: [
-        null,
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(30),
-          Validators.maxLength(500)
-        ])
-      ],
-      validate: ""
+
+      id: [null, Validators.required],
+      firstname: [null, Validators.required],
+      lastname: [null, Validators.required],
+      profile: [null, Validators.required],
+      realm: [null, Validators.required],
+      username: [null, Validators.required],
+      password: [null, Validators.required],
+      email: [null, Validators.required],
+      emailVerified: [null],
+      verificationToken: [null],
+      memberId: [null, Validators.required],
+      user_legal_id: [null, Validators.required],
+      user_internal_id: [null, Validators.required],
+      user_photo_path: [null, Validators.required]
     });
   }
 

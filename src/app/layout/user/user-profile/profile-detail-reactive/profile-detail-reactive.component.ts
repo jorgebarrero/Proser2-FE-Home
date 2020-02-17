@@ -17,12 +17,10 @@ import { UserService } from "src/shared/services";
 export class ProfileDetailReactiveComponent implements OnInit {
   @Input() componentData;
 
-  test;
-
   rForm: FormGroup;
   post: any;
-  description: string = "";
-  name: string = "";
+  titleAlert;
+  name;
 
   constructor(
     private userService: UserService,
@@ -30,30 +28,43 @@ export class ProfileDetailReactiveComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder
   ) {
-    this.test = {
-      firstName: "",
-      comments: ""
-    };
-
     this.rForm = fb.group({
       name: [null, Validators.required],
-      description: [
-        null,
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(30),
-          Validators.maxLength(500)
-        ])
-      ],
-      validate: ""
+      id: [null, Validators.required],
+      firstname: [null, Validators.required],
+      lastname: [null, Validators.required],
+      profile: [null, Validators.required],
+      realm: [null, Validators.required],
+      username: [null, Validators.required],
+      password: [null, Validators.required],
+      email: [null, Validators.required],
+      emailVerified: [null, Validators.required],
+      verificationToken: [null, Validators.required],
+      memberId: [1, Validators.required],
+      user_legal_id: [null, Validators.required],
+      user_internal_id: [null, Validators.required],
+      user_photo_path: [null, Validators.required],
+      validate: [1, Validators.required]
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.rForm.get("validate").valueChanges.subscribe(validate => {
+      if (validate == "1") {
+        this.rForm
+          .get("name")
+          .setValidators([Validators.required, Validators.minLength(3)]);
+        this.titleAlert = "You neeed to specify at least 3 characters";
+      } else {
+        this.rForm.get("name").setValidators([Validators.required]);
+      }
+      this.rForm.get("name").updateValueAndValidity();
+    });
+  }
 
   addPost(post) {
-    this.description = post.description;
-    this.name = post.name;
+    // this.description = post.description;
+    // this.name = post.name;
   }
 
   log(event) {
