@@ -10,11 +10,11 @@ import { ToastrService } from "ngx-toastr";
 import { UserService } from "src/shared/services";
 
 @Component({
-  selector: "app-profile-detail",
-  templateUrl: "./profile-detail.component.html",
-  styleUrls: ["./profile-detail.component.scss"]
+  selector: "app-profile-detail-standard",
+  templateUrl: "./profile-detail-standard.component.html",
+  styleUrls: ["./profile-detail-standard.component.scss"]
 })
-export class ProfileDetailComponent implements OnInit {
+export class ProfileDetailStandardComponent implements OnInit {
   @Input() componentData;
 
   test;
