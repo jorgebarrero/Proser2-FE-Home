@@ -1,94 +1,136 @@
-<div *ngIf="!name; else forminfo">
+<div>
 
-  <form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+  <div class="form-group row form-filled-box ml-1 mr-1">
+    <p
+       class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xm-12 form-filled-label mb-0">
+      Id
+    </p>
+    <p
+       class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xm-12 form-filled-value mb-0">
+      {{componentData.id}}
+    </p>
+  </div>
 
-    <div class="form-container">
+  <div class="form-group row form-filled-box ml-1 mr-1">
+    <p
+       class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xm-12 form-filled-label mb-0">
+      Nombre</p>
+    <p
+       class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xm-12 form-filled-value mb-0">
+      {{componentData.firstname}}</p>
+  </div>
 
-      <div class="">
+  <div class="form-group row form-filled-box ml-1 mr-1">
+    <p
+       class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xm-12 form-filled-label mb-0">
+      Apellido</p>
+    <p
+       class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xm-12 form-filled-value mb-0">
+      {{componentData.lastname}}</p>
+  </div>
 
-        <h3 class="">Edit</h3>
+  <div class="form-group row form-filled-box ml-1 mr-1">
+    <p
+       class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xm-12 form-filled-label mb-0">
+      Perfil</p>
+    <p
+       class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xm-12 form-filled-value mb-0">
+      {{componentData.profile}}</p>
+  </div>
 
-        <!---------------------------- Fields Area  ------------------->
-        <!-- name -->
-        <div class="form-group">
-          <label for="name">Name </label>
-          <input type="text" formControlName="name" class="form-control">
-          <!-- validation -->
-          <div class="alert alert-danger"
-               *ngIf="!rForm.controls['name'].valid && rForm.controls['name'].touched">
-            <div *ngIf="rForm.controls['name'].errors.required">
-              First name is required
-            </div>
-            <div *ngIf="rForm.controls['name'].errors.minlength">
-              Minimum length is
-              {{ rForm.controls['name'].errors.minlength.requiredLength | json}}
-              characters
-            </div>
-            <div *ngIf="rForm.controls['name'].errors.maxlength">
-              Maximum length is 3 characters
-            </div>
-            <div *ngIf="rForm.controls['name'].errors.pattern">
-              Valid value is "banana"
-            </div>
-          </div>
-        </div>
+  <div class="form-group row form-filled-box ml-1 mr-1">
+    <p
+       class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xm-12 form-filled-label mb-0">
+      Realm</p>
+    <p
+       class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xm-12 form-filled-value mb-0">
+      {{componentData.realm}}</p>
+  </div>
 
-        <!-- description -->
-        <div class="form-group">
-          <label for="description">Description
-            <textarea formControlName="description"
-                      class="form-control"></textarea>
-          </label>
-          <!-- validation -->
-          <div class="alert alert-danger"
-               *ngIf="!rForm.controls['description'].valid && rForm.controls['description'].touched">
-            <div *ngIf="rForm.controls['description'].errors.required">
-              First name is required
-            </div>
-            <div *ngIf="rForm.controls['description'].errors.minlength">
-              Minimum length is
-              {{ rForm.controls['description'].errors.minlength.requiredLength | json}}
-              characters
-            </div>
-            <div *ngIf="rForm.controls['description'].errors.maxlength">
-              Maximum length is 3 characters
-            </div>
-            <div *ngIf="rForm.controls['description'].errors.pattern">
-              Valid value is "banana"
-            </div>
-          </div>
+  <div class="form-group row form-filled-box ml-1 mr-1">
+    <p
+       class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xm-12 form-filled-label mb-0">
+      Usuario</p>
+    <p
+       class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xm-12 form-filled-value mb-0">
+      {{componentData.username}}</p>
+  </div>
 
-        </div>
+  <div class="form-group row form-filled-box ml-1 mr-1">
+    <p
+       class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xm-12 form-filled-label mb-0">
+      Contraseña</p>
+    <p
+       class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xm-12 form-filled-value mb-0">
+      ****</p>
+  </div>
 
-        <!-- validate -->
-        <div class="form-group">
-          <label for="validate">Minimum of 3 Characters
-            <input type="checkbox" name="validate" formControlName="validate"
-                   value="1"> On
-          </label>
-        </div>
-        <!---------------------- Submit button ---------------------->
+  <div class="form-group row form-filled-box ml-1 mr-1">
+    <p
+       class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xm-12 form-filled-label mb-0">
+      email</p>
+    <p
+       class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xm-12 form-filled-value mb-0">
+      {{componentData.email}}</p>
+  </div>
 
-        <!-- submit -->
-        <div class="form-group">
-          <input type="submit" class="btn" value="Submit form"
-                 [disabled]="!rForm.valid" class="form-control">
-        </div>
-      </div>
+  <div class="form-group row form-filled-box ml-1 mr-1">
+    <p
+       class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xm-12 form-filled-label mb-0">
+      Verificación</p>
+    <p
+       class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xm-12 form-filled-value mb-0">
+      {{componentData.emailVerified}}
+    </p>
+  </div>
 
-    </div>
+  <div class="form-group row form-filled-box ml-1 mr-1">
+    <p
+       class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xm-12 form-filled-label mb-0">
+      Token</p>
+    <p
+       class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xm-12 form-filled-value mb-0">
+      {{componentData.verificationToken}}</p>
+  </div>
 
-  </form>
+  <div class="form-group row form-filled-box ml-1 mr-1">
+    <p
+       class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xm-12 form-filled-label mb-0">
+      Miembro</p>
+    <p
+       class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xm-12 form-filled-value mb-0">
+      {{componentData.memberId}}</p>
+  </div>
+
+  <div class="form-group row form-filled-box ml-1 mr-1">
+    <p
+       class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xm-12 form-filled-label mb-0">
+      Cédula</p>
+    <p
+       class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xm-12 form-filled-value mb-0">
+      {{componentData.user_legal_id}}
+    </p>
+  </div>
+
+  <div class="form-group row form-filled-box ml-1 mr-1">
+    <p
+       class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xm-12 form-filled-label mb-0">
+      No empleado</p>
+    <p
+       class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xm-12 form-filled-value mb-0">
+      {{componentData.user_internal_id}}
+    </p>
+  </div>
+
+  <div class="form-group row form-filled-box ml-1 mr-1">
+    <p
+       class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xm-12 form-filled-label mb-0">
+      Lugar de foto</p>
+    <p
+       class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xm-12 form-filled-value mb-0">
+      {{componentData.user_photo_path}}
+    </p>
+  </div>
+
 
 </div>
-
-
-
-<ng-template #forminfo>
-  <div class="from-container">
-    <div class="row-columns">
-      <h1>{{name}}</h1>
-      <p>{{description}}</p>
-    </div>
-  </div>
-</ng-template>

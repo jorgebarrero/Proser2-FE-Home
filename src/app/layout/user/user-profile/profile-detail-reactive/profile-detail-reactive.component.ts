@@ -20,35 +20,87 @@ export class ProfileDetailReactiveComponent implements OnInit {
   rForm: FormGroup;
   post: any;
   titleAlert;
-  name;
+  record;
 
   constructor(
     private userService: UserService,
     private toastr: ToastrService,
     private router: Router,
     private fb: FormBuilder
-  ) {
-    this.rForm = fb.group({
-      name: [null, Validators.required],
-      id: [null, Validators.required],
-      firstname: [null, Validators.required],
-      lastname: [null, Validators.required],
-      profile: [null, Validators.required],
-      realm: [null, Validators.required],
-      username: [null, Validators.required],
-      password: [null, Validators.required],
-      email: [null, Validators.required],
-      emailVerified: [null, Validators.required],
-      verificationToken: [null, Validators.required],
-      memberId: [1, Validators.required],
-      user_legal_id: [null, Validators.required],
-      user_internal_id: [null, Validators.required],
-      user_photo_path: [null, Validators.required],
-      validate: [1, Validators.required]
+  ) {}
+
+  ngOnInit(): void {
+    this.resetForm();
+  }
+
+  addPost(post) {
+    console.log("componentData", this.componentData);
+    // this.description = post.description;
+    // this.name = post.name;
+  }
+
+  editRegister() {}
+
+  newRegister() {}
+
+  log(form) {
+    console.log("Form", form);
+  }
+
+  resetForm() {
+    this.rForm = this.fb.group({
+      // Id
+      id: [this.componentData.id, Validators.required],
+      // Mandatory
+      username: [
+        { value: this.componentData.username, disabled: true },
+        Validators.required
+      ],
+      email: [this.componentData.email, Validators.required],
+      firstname: [this.componentData.firstname, Validators.required],
+      lastname: [this.componentData.lastname, Validators.required],
+      // Type
+      profile: [
+        { value: this.componentData.profile, disabled: true },
+        Validators.required
+      ],
+      memberId: [this.componentData.memberId],
+      // Optional
+      user_legal_id: [this.componentData.user_legal_id],
+      user_internal_id: [this.componentData.user_internal_id],
+      // Secret
+      password: [null],
+      checkPassword: [null],
+      // Auto
+      realm: [this.componentData.realm],
+      emailVerified: [this.componentData.emailVerified],
+      verificationToken: [this.componentData.verificationToken],
+
+      user_photo_path: [this.componentData.user_photo_path]
     });
   }
 
-  ngOnInit(): void {
+  returnForm() {
+    console.log("ole");
+
+    this.record = !this.record;
+  }
+
+  onSubmit(form: NgForm) {
+    // console.log("Profile form", form.value);
+    this.record = true;
+  }
+
+  _markFormPristine(form: FormGroup | NgForm): void {
+    Object.keys(form.controls).forEach(control => {
+      form.controls[control].markAsPristine();
+    });
+    console.log("form", form);
+  }
+
+  /**OPTIONAL**************************** */
+
+  dinamicChanges() {
     this.rForm.get("validate").valueChanges.subscribe(validate => {
       if (validate == "1") {
         this.rForm
@@ -60,43 +112,5 @@ export class ProfileDetailReactiveComponent implements OnInit {
       }
       this.rForm.get("name").updateValueAndValidity();
     });
-  }
-
-  addPost(post) {
-    // this.description = post.description;
-    // this.name = post.name;
-  }
-
-  log(event) {
-    console.log("event", event);
-  }
-
-  onChange() {
-    this.userService.serviceData = this.componentData;
-  }
-
-  resetForm(form?: NgForm) {
-    if (form != null) form.resetForm();
-    this.componentData = {
-      id: "",
-      firstname: "",
-      lastname: "",
-      profile: "",
-      realm: "",
-      username: " ",
-      password: "",
-      email: "",
-      emailVerified: "",
-      verificationToken: "",
-      memberId: "",
-      user_legal_id: "",
-      user_internal_id: "",
-      user_photo_path: ""
-    };
-    // this.userService.serviceData = this.componentData;
-  }
-
-  onSubmit(form: NgForm) {
-    console.log("Profile form", form.value);
   }
 }

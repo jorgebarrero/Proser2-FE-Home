@@ -1,21 +1,33 @@
-<div *ngIf="!name; else forminfo">
+<div *ngIf="!record; else forminfo">
 
-  <form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+  <form [formGroup]="rForm" (ngSubmit)="onSubmit(rForm.value)">
 
     <div class="form-container">
 
       <div class="">
 
+        <!-- Title -->
         <h3 class="" (click)="log(rForm)">Reactive form</h3>
+        <!---------------------- button area---------------------->
+        <!-- submit -->
+        <div class="form-group">
+          <input type="submit" class="btn" value="Ok" [disabled]="!rForm.valid"
+                 class="form-control">
+
+
+        </div>
+
+        <button (click)="_markFormPristine(rForm)">reset</button>
 
         <!---------------------------- Fields Area  ------------------->
 
         <section class="row">
 
           <!-- id -->
-          <div class="form-group col-3">
+          <div class="form-group col-12" [hidden]="true">
             <label>Id</label>
-            <input type="text" formControlName="id" class="form-control">
+            <input type="text" formControlName="id" class="form-control"
+                   [(ngModel)]="componentData.id">
             <!-- Validation -->
             <div class="alert alert-danger"
                  *ngIf="!rForm.controls['id'].valid && rForm.controls['id'].touched">
@@ -25,23 +37,14 @@
             </div>
           </div>
 
-          <!-- email -->
-          <div class="form-group col-9">
-            <label>Email</label>
-            <input type="text" formControlName="email" class="form-control">
-            <!-- Validation -->
-            <div class="alert alert-danger"
-                 *ngIf="!rForm.controls['email'].valid && rForm.controls['email'].touched">
-              <div *ngIf="rForm.controls['email'].errors.required">
-                Dato obligatorio
-              </div>
-            </div>
-          </div>
+
 
           <!-- username -->
           <div class="form-group col-6">
             <label>Usuario</label>
-            <input type="text" formControlName="username" class="form-control">
+            <input type="text" formControlName="username" class="form-control"
+                   [(ngModel)]="componentData.username">
+            <!-- Validation -->
             <div class="alert alert-danger"
                  *ngIf="!rForm.controls['username'].valid && rForm.controls['username'].touched">
               <div *ngIf="rForm.controls['username'].errors.required">
@@ -51,34 +54,12 @@
           </div>
 
 
-          <!-- name -->
-          <div class="form-group col-6">
-            <label for="name">Name </label>
-            <input type="text" formControlName="name" class="form-control">
-            <!-- validation -->
-            <div class="alert alert-danger"
-                 *ngIf="!rForm.controls['name'].valid && rForm.controls['name'].touched">
-              <div *ngIf="rForm.controls['name'].errors.required">
-                First name is required
-              </div>
-              <div *ngIf="rForm.controls['name'].errors.minlength">
-                Minimum length is
-                {{ rForm.controls['name'].errors.minlength.requiredLength | json}}
-                characters
-              </div>
-              <div *ngIf="rForm.controls['name'].errors.maxlength">
-                Maximum length is 3 characters
-              </div>
-              <div *ngIf="rForm.controls['name'].errors.pattern">
-                Valid value is "banana"
-              </div>
-            </div>
-          </div>
-
           <!-- profile -->
           <div class="form-group col-6">
             <label>Perfil</label>
-            <input type="text" formControlName="profile" class="form-control">
+            <input type="text" formControlName="profile" class="form-control"
+                   [(ngModel)]="componentData.profile">
+            <!-- Validation -->
             <div class="alert alert-danger"
                  *ngIf="!rForm.controls['profile'].valid && rForm.controls['profile'].touched">
               <div *ngIf="rForm.controls['profile'].errors.required">
@@ -87,12 +68,26 @@
             </div>
           </div>
 
-
+          <!-- email -->
+          <div class="form-group col-12">
+            <label>Email</label>
+            <input type="text" formControlName="email" class="form-control"
+                   [(ngModel)]="componentData.email">
+            <!-- Validation -->
+            <div class="alert alert-danger"
+                 *ngIf="!rForm.controls['email'].valid && rForm.controls['email'].touched">
+              <div *ngIf="rForm.controls['email'].errors.required">
+                Dato obligatorio
+              </div>
+            </div>
+          </div>
 
           <!-- firstname -->
           <div class="form-group col-6">
             <label>Nombre</label>
-            <input type="text" formControlName="firstname" class="form-control">
+            <input type="text" formControlName="firstname" class="form-control"
+                   [(ngModel)]="componentData.firstname">
+            <!-- Validation -->
             <div class="alert alert-danger"
                  *ngIf="!rForm.controls['firstname'].valid && rForm.controls['firstname'].touched">
               <div *ngIf="rForm.controls['firstname'].errors.required">
@@ -101,10 +96,13 @@
             </div>
           </div>
 
+
           <!-- lastname -->
           <div class="form-group col-6">
             <label>Apellido</label>
-            <input type="text" formControlName="lastname" class="form-control">
+            <input type="text" formControlName="lastname" class="form-control"
+                   [(ngModel)]="componentData.lastname">
+            <!-- Validation -->
             <div class="alert alert-danger"
                  *ngIf="!rForm.controls['lastname'].valid && rForm.controls['lastname'].touched">
               <div *ngIf="rForm.controls['lastname'].errors.required">
@@ -118,7 +116,9 @@
           <div class="form-group col-6">
             <label>Cédula</label>
             <input type="text" formControlName="user_legal_id"
-                   class="form-control">
+                   class="form-control"
+                   [(ngModel)]="componentData.user_legal_id">
+            <!-- Validation -->
             <div class="alert alert-danger"
                  *ngIf="!rForm.controls['user_legal_id'].valid && rForm.controls['user_legal_id'].touched">
               <div *ngIf="rForm.controls['user_legal_id'].errors.required">
@@ -132,7 +132,9 @@
           <div class="form-group col-6">
             <label>Número de empleado</label>
             <input type="text" formControlName="user_internal_id"
-                   class="form-control">
+                   class="form-control"
+                   [(ngModel)]="componentData.user_internal_id">
+            <!-- Validation -->
             <div class="alert alert-danger"
                  *ngIf="!rForm.controls['user_internal_id'].valid && rForm.controls['user_internal_id'].touched">
               <div *ngIf="rForm.controls['user_internal_id'].errors.required">
@@ -143,9 +145,11 @@
 
 
           <!-- password -->
-          <div class="form-group col-6">
+          <div class="form-group col-6" [hidden]="true">
             <label>Contraseña</label>
-            <input type="text" formControlName="password" class="form-control">
+            <input type="password" formControlName="password"
+                   class="form-control" [(ngModel)]="componentData.password">
+            <!-- Validation -->
             <div class="alert alert-danger"
                  *ngIf="!rForm.controls['password'].valid && rForm.controls['password'].touched">
               <div *ngIf="rForm.controls['password'].errors.required">
@@ -156,10 +160,12 @@
 
 
           <!-- emailVerified -->
-          <div class="form-group col-6">
+          <div class="form-group col-6" [hidden]="true">
             <label>Email verification</label>
             <input type="text" formControlName="emailVerified"
-                   class="form-control">
+                   class="form-control"
+                   [(ngModel)]="componentData.emailVerified">
+            <!-- Validation -->
             <div class="alert alert-danger"
                  *ngIf="!rForm.controls['emailVerified'].valid && rForm.controls['emailVerified'].touched">
               <div *ngIf="rForm.controls['emailVerified'].errors.required">
@@ -170,10 +176,12 @@
 
 
           <!-- user_photo_path -->
-          <div class="form-group col-6">
+          <div class="form-group col-12">
             <label>Ubicación de la foto</label>
             <input type="text" formControlName="user_photo_path"
-                   class="form-control">
+                   class="form-control"
+                   [(ngModel)]="componentData.user_photo_path">
+            <!-- Validation -->
             <div class="alert alert-danger"
                  *ngIf="!rForm.controls['user_photo_path'].valid && rForm.controls['user_photo_path'].touched">
               <div *ngIf="rForm.controls['user_photo_path'].errors.required">
@@ -184,9 +192,11 @@
 
 
           <!-- realm -->
-          <div class="form-group col-6">
+          <div class="form-group col-6" [hidden]="true">
             <label>Realm</label>
-            <input type="text" formControlName="realm" class="form-control">
+            <input type="text" formControlName="realm" class="form-control"
+                   [(ngModel)]="componentData.realm">
+            <!-- Validation -->
             <div class="alert alert-danger"
                  *ngIf="!rForm.controls['realm'].valid && rForm.controls['realm'].touched">
               <div *ngIf="rForm.controls['realm'].errors.required">
@@ -196,47 +206,24 @@
           </div>
 
         </section>
-
-
-        <!---------------------- Submit button ---------------------->
-
-        <!-- submit -->
-        <div class="form-group">
-          <input type="submit" class="btn" value="Submit form"
-                 [disabled]="!rForm.valid" class="form-control">
-        </div>
       </div>
-
     </div>
-
-
-
-
   </form>
-
 </div>
 
 
 
 <ng-template #forminfo>
-  <div class="">
-    <div class="">
-
-      {{componentData.id}}
-      {{componentData.firstname}}
-      {{componentData.lastname}}
-      {{componentData.profile}}
-      {{componentData.realm}}
-      {{componentData.username}}
-      {{componentData.password}}
-      {{componentData.email}}
-      {{componentData.emailVerified}}
-      {{componentData.verificationToken}}
-      {{componentData.memberId}}
-      {{componentData.user_legal_id}}
-      {{componentData.user_internal_id}}
-      {{componentData.user_photo_path}}
-
+  <div class="form-filled">
+    <!-- Title -->
+    <h3 class="" (click)="log(rForm)">Reactive form</h3>
+    <!-- submit -->
+    <div class="form-group">
+      <input type="submit" class="btn" value="Regresar" class="form-control"
+             (click)="returnForm()">
     </div>
+
+    <app-profile-detail [componentData]="componentData"></app-profile-detail>
   </div>
+
 </ng-template>

@@ -1,9 +1,8 @@
-
 <app-header [currentUser]="currentUser" [showMenus]="showMenus"
-[alertMessage]="alertMessage"></app-header>
+            [alertMessage]="alertMessage"></app-header>
 
 
-<section class="container" *ngIf="!alertMessage.alertShow">
+<section class="page" *ngIf="!alertMessage.alertShow">
 
 
   <h1 class="form-title text-left">
@@ -15,8 +14,8 @@
     <div class="col-lg-4 col-md-12">
 
       <section class="card">
-        <app-profile-detail [componentData]="componentData">
-        </app-profile-detail>
+        <app-profile-detail-reactive [componentData]="componentData">
+        </app-profile-detail-reactive>
       </section>
 
     </div>

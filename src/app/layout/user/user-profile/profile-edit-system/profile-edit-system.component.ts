@@ -46,4 +46,5 @@ export class ProfileEditSystemComponent implements OnInit {
   onComponentData(event) {
     this.componentData = event;
   }
+
 }

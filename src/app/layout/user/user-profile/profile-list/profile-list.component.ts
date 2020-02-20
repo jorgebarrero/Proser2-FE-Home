@@ -126,8 +126,11 @@ export class ProfileListComponent implements OnInit {
   }
 
   unPopulateForm() {
-    // let user = new UserbaseModel()
-    // this.userService.formData = Object.assign({}, user);
+    let user = new UserbaseModel();
+    console.log("user", user);
+    this.componentData = user;
+    this.selectedRow = user;
+    // this.componentData = Object.assign({}, user);
     // this.selectedRow = Object.assign({}, user);
   }
 
@@ -136,12 +139,11 @@ export class ProfileListComponent implements OnInit {
   /// search
 
   onSearch(findInList) {
-    // if (findInList.length > 0) {
-    //   this.userService.list = this.search(findInList)
-    // }
-    // else {
-    //   this.userService.list = this.userService.fullList
-    // }
+    if (findInList.length > 0) {
+      this.componentList = this.search(findInList);
+    } else {
+      this.componentList = this.componentFullList;
+    }
   }
 
   onSort(event) {
@@ -149,19 +151,21 @@ export class ProfileListComponent implements OnInit {
   }
 
   search(text: string): UserbaseModel[] {
-    // return this.userService.fullList.filter(user => {
-    //   const term = text.toLowerCase();
-    //   return (
-    //     user.employeeFullName.toLowerCase().includes(term) ||
-    //     user.employeePosition.toLowerCase().includes(term) ||
-    //     user.employeeMobile.toLowerCase().includes(term)
-    //   )
-    // });
-    return;
+    let filteredList = this.componentFullList.filter((user: UserbaseModel) => {
+      const term = text.toLowerCase();
+      return (
+        user.username.toLowerCase().includes(term) ||
+        user.email.toLowerCase().includes(term) ||
+        user.profile.toLowerCase().includes(term) ||
+        user.lastname.toLowerCase().includes(term)
+      );
+    });
+
+    return filteredList;
   }
 
   clearForm() {
-    // this.userService.formData = new UserbaseModel();
+    this.componentData = new UserbaseModel();
   }
 
   // Export data

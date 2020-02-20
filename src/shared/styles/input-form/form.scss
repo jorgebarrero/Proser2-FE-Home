@@ -36,17 +36,17 @@ form {
   color: #dc6545;
 }
 
-.form-control.ng-touched.ng-valid {
-  background-color: lightgreen;
-  border-color: green;
-  color: green;
-}
+// .form-control.ng-touched.ng-valid {
+//   background-color: lightgreen;
+//   border-color: green;
+//   color: green;
+// }
 
-.form-control.ng-touched {
-  background-color: lightpink;
-  border-color: #dc6545;
-  color: #dc6545;
-}
+// .form-control.ng-touched {
+//   background-color: lightpink;
+//   border-color: #dc6545;
+//   color: #dc6545;
+// }
 
 button[type="submit"] {
   background-color: #77bb29;
@@ -66,4 +66,22 @@ input[type="submit"] {
 input[disabled] {
   background-color: rgb(199, 193, 193);
   color: rgb(131, 126, 126);
+}
+
+.form-filled {
+  padding: 5px;
+  background-color: lightblue;
+}
+
+.form-filled-label {
+  font-size: 0.8rem;
+  color: blue;
+}
+
+.form-filled-value {
+  font-size: 0.8rem;
+  color: black;
+}
+.form-filled-box {
+  background-color: white;
 }

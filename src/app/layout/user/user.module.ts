@@ -26,8 +26,8 @@ import { ProfileListComponent } from "./user-profile/profile-list/profile-list.c
 import { ProfileCardFieldComponent } from "./user-profile/profile-card/profile-card-field/profile-card-field.component";
 import { ProfileEditUserComponent } from "./user-profile/profile-edit-user/profile-edit-user.component";
 import { ProfileEditSystemComponent } from "./user-profile/profile-edit-system/profile-edit-system.component";
-import { ProfileDetailReactiveComponent } from './user-profile/profile-detail-reactive/profile-detail-reactive.component';
-import { ProfileDetailStandardComponent } from './user-profile/profile-detail-standard/profile-detail-standard.component';
+import { ProfileDetailReactiveComponent } from "./user-profile/profile-detail-reactive/profile-detail-reactive.component";
+import { ProfileDetailStandardComponent } from "./user-profile/profile-detail-standard/profile-detail-standard.component";
 
 // Services
 
@@ -55,6 +55,7 @@ import { ProfileDetailStandardComponent } from './user-profile/profile-detail-st
     ToastrModule,
     FontAwesomeModule,
     NgbModule,
+    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: "never" }),
     UserRoutingModule
   ],
   providers: []
